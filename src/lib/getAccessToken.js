@@ -1,9 +1,8 @@
 import { clientId, consumerSecret } from "../constants";
 
 const getAccessToken = async (code) => {
-  console.log("code from lib", code);
   clearUrl();
-  
+
   const res = await fetch("https://wbsapi.withings.net/v2/oauth2", {
     body: `action=requesttoken&grant_type=authorization_code&client_id=${clientId}&client_secret=${consumerSecret}&code=${code}&redirect_uri=http://localhost:3000/`,
     headers: {
@@ -14,13 +13,18 @@ const getAccessToken = async (code) => {
 
   const response = await res.json();
 
-  if (response.body && response.status === 0 ) {
+  if (response.body && response.status === 0) {
+    const now = new Date();
+    now.setHours((now.getHours() + response.body.expires_in / 60 / 60) % 24);
+
     localStorage.setItem("access_token", response.body.access_token);
     localStorage.setItem("userId", response.body.userid);
     localStorage.setItem("refresh_token", response.body.refresh_token);
-  }
-  else{
-    console.log('authentication failed - ', response)
+    localStorage.setItem("token_expiration", now);
+
+    window.location.reload()
+  } else {
+    console.log("authentication failed - ", response);
   }
 };
 
