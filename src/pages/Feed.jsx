@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import {WithingsContext} from '../contexts/WithingsContext'
 import {getActivities} from '../lib/fetchWithings'
+import DailyActivity from '../components/DailyActivity'
 
 function Feed() {
   const {userData, setUserData} = useContext(WithingsContext)
@@ -14,11 +15,8 @@ function Feed() {
     fetchData()
   }, [setUserData])
 
-  console.log('userData', userData)
 
-  return <div>
-      yikes, we here
-  </div>
+  return <DailyActivity/>
 }
 
 export default Feed

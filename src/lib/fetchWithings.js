@@ -1,10 +1,15 @@
 import { buildUrl } from "./buildQueryParams";
-import { getCustomWithingsDate, getLastYear } from "./getWithingsDate";
+import { getCustomWithingsDate, getLastYear, getYesterday } from "./getWithingsDate";
 
 const access_token = localStorage.getItem("access_token");
 
 export const getActivities = async () => {
   let activities = [];
+
+  let lastyear = new Date()
+  lastyear.setFullYear(lastyear.getFullYear()-1)
+  console.log('lastyear', lastyear.getTime())
+
   const getData = async (offset = 0) => {
     const userActivities = await fetch(
       `https://wbsapi.withings.net/v2/measure`,
@@ -22,7 +27,6 @@ export const getActivities = async () => {
         }),
       }
     );
-
     const temp = await userActivities.json();
     activities = activities.concat(temp.body.activities);
 
