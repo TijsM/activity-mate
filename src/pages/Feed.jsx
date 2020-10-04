@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import {getActivity} from '../lib/fetchWithings'
+import {getActivities} from '../lib/fetchWithings'
 
 function Auth() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data =  await getActivity()
+      const data =  await getActivities()
       console.log('data', data)
     }
 
