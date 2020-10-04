@@ -3,7 +3,7 @@ export const getCustomWithingsDate = (date) => {
   const month =
     date.getMonth() + 1 < 10
       ? "0" + (date.getMonth() + 1).toString()
-      : date.getMonth()+1;
+      : date.getMonth() + 1;
   const day =
     date.getDate() + 1 < 10
       ? "0" + (date.getDate() + 1).toString()
@@ -12,17 +12,16 @@ export const getCustomWithingsDate = (date) => {
   return `${year}-${month}-${day}`;
 };
 
-
 export const getLastYear = () => {
-    let lastyear = new Date()
-    lastyear.setFullYear(lastyear.getFullYear()-1)
+  let lastyear = new Date();
+  lastyear.setFullYear(lastyear.getFullYear() - 1);
 
-    return getCustomWithingsDate(lastyear)
-}
+  return getCustomWithingsDate(lastyear);
+};
 
 export const getYesterday = () => {
-  let yesterday = new Date()
-  yesterday.setDate(yesterday.getDate()-1)
+  let yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
 
-    return getCustomWithingsDate(yesterday)
-}
+  return getCustomWithingsDate(yesterday);
+};

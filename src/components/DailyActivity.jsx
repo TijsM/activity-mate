@@ -7,6 +7,7 @@ function DailyActivity() {
   const { userData } = useContext(WithingsContext);
   const [todayActivity, setTodayActivity] = useState();
   const [lastWeekActivity, setLastWeekActivity] = useState();
+  const [lastMonthActivity, setLastMonthActivity] = useState();
 
   useEffect(() => {
     if (userData.dailyData) {
@@ -14,25 +15,31 @@ function DailyActivity() {
         (day) => day.date === getYesterday()
       );
       setTodayActivity(today);
-
-      const todayDate = new Date();
-      const lastWeek = userData.dailyData.filter((day) => {
-        const date = new Date(
-          day.date.split("-")[0],
-          day.date.split("-")[1] - 1,
-          day.date.split("-")[2]
-        );
-        if (date.getTime() > todayDate.getTime() - 1000 * 60 * 60 * 24 * 7) {
-          console.log(date);
-          return true;
-        }
-      });
-      setLastWeekActivity(lastWeek);
+      setLastWeekActivity(getLastDays(userData, 7));
+      setLastMonthActivity(getLastDays(userData, 30))
     }
   }, [userData]);
 
+  const getLastDays = (userData, days) => {
+    const todayDate = new Date();
+
+    const lastDays = userData.dailyData.filter((day) => {
+      const date = new Date(
+        day.date.split("-")[0],
+        day.date.split("-")[1] - 1,
+        day.date.split("-")[2]
+      );
+      if (date.getTime() > todayDate.getTime() - 1000 * 60 * 60 * 24 * days) {
+        return true;
+      }
+    });
+
+    return lastDays;
+  };
+
   console.log("yesterday", todayActivity);
   console.log("lastWeek", lastWeekActivity);
+  console.log("lastMonth", lastMonthActivity)
 
   return <Section>yyiikes</Section>;
 }
