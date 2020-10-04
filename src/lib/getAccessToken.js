@@ -1,5 +1,6 @@
 import { clientId, consumerSecret } from "../constants";
 
+
 const getAccessToken = async (code) => {
   clearUrl();
 
@@ -7,6 +8,7 @@ const getAccessToken = async (code) => {
     body: `action=requesttoken&grant_type=authorization_code&client_id=${clientId}&client_secret=${consumerSecret}&code=${code}&redirect_uri=http://localhost:3000/`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
+
     },
     method: "POST",
   });
@@ -23,8 +25,6 @@ const getAccessToken = async (code) => {
     localStorage.setItem("token_expiration", now);
 
     window.location.reload()
-  } else {
-    console.log("authentication failed - ", response);
   }
 };
 
