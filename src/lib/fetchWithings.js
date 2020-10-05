@@ -8,7 +8,6 @@ export const getActivities = async () => {
 
   let lastyear = new Date()
   lastyear.setFullYear(lastyear.getFullYear()-1)
-  console.log('lastyear', lastyear.getTime())
 
   const getData = async (offset = 0) => {
     const userActivities = await fetch(

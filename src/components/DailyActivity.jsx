@@ -16,7 +16,7 @@ function DailyActivity() {
       );
       setTodayActivity(today);
       setLastWeekActivity(getLastDays(userData, 7));
-      setLastMonthActivity(getLastDays(userData, 30))
+      setLastMonthActivity(getLastDays(userData, 30));
     }
   }, [userData]);
 
@@ -37,11 +37,39 @@ function DailyActivity() {
     return lastDays;
   };
 
-  console.log("yesterday", todayActivity);
-  console.log("lastWeek", lastWeekActivity);
-  console.log("lastMonth", lastMonthActivity)
+  const getAverage = (numbers) => {
+    let sum = 0;
+    numbers.forEach((number) => {
+      sum += number;
+    });
 
-  return <Section>yyiikes</Section>;
+    return sum / numbers.length;
+  };
+
+  return (
+    <Section>
+      <div>
+        {todayActivity && todayActivity.calories}/
+        {lastWeekActivity &&
+          getAverage(lastWeekActivity.map((day) => day.calories))}
+      </div>
+      <div>
+        {lastWeekActivity &&
+          getAverage(lastWeekActivity.map((day) => day.calories))}
+        /
+        {lastMonthActivity &&
+          getAverage(lastMonthActivity.map((day) => day.calories))}
+      </div>
+      <div>
+
+        {lastMonthActivity &&
+          getAverage(lastMonthActivity.map((day) => day.calories))}
+          /
+          {userData.dailyData &&
+          getAverage(userData.dailyData.map((day) => day.calories))}
+      </div>
+    </Section>
+  );
 }
 
 export default DailyActivity;
