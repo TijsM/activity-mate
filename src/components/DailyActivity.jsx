@@ -3,6 +3,8 @@ import { WithingsContext } from "../contexts/WithingsContext";
 import { Section } from "../styles/Section";
 import { getYesterday } from "../lib/getWithingsDate";
 
+import { H2 } from '../styles/Types'
+
 function DailyActivity() {
   const { userData } = useContext(WithingsContext);
   const [todayActivity, setTodayActivity] = useState();
@@ -48,26 +50,30 @@ function DailyActivity() {
 
   return (
     <Section>
-      <div>
-        {todayActivity && todayActivity.calories}/
-        {lastWeekActivity &&
-          getAverage(lastWeekActivity.map((day) => day.calories))}
-      </div>
-      <div>
-        {lastWeekActivity &&
-          getAverage(lastWeekActivity.map((day) => day.calories))}
-        /
-        {lastMonthActivity &&
-          getAverage(lastMonthActivity.map((day) => day.calories))}
-      </div>
-      <div>
+        <div>
+          <H2>Today</H2>
+          {todayActivity && todayActivity.calories}/
+          {lastWeekActivity &&
+            getAverage(lastWeekActivity.map((day) => day.calories))}
+        </div>
+        <div>
+        <H2>Last week</H2>
 
-        {lastMonthActivity &&
-          getAverage(lastMonthActivity.map((day) => day.calories))}
+          {lastWeekActivity &&
+            getAverage(lastWeekActivity.map((day) => day.calories))}
+          /
+          {lastMonthActivity &&
+            getAverage(lastMonthActivity.map((day) => day.calories))}
+        </div>
+        <div>
+        <H2>Last month</H2>
+
+          {lastMonthActivity &&
+            getAverage(lastMonthActivity.map((day) => day.calories))}
           /
           {userData.dailyData &&
-          getAverage(userData.dailyData.map((day) => day.calories))}
-      </div>
+            getAverage(userData.dailyData.map((day) => day.calories))}
+        </div>
     </Section>
   );
 }
