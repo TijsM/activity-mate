@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { WithingsContext } from "../contexts/WithingsContext";
 import { Section } from "../styles/Section";
 import { getYesterday } from "../lib/getWithingsDate";
-
-import { H2 } from '../styles/Types'
+import ActivityBlock from "../components/ActivityBlock";
+import { H2, SubTitle } from "../styles/Types";
 
 function DailyActivity() {
   const { userData } = useContext(WithingsContext);
@@ -50,30 +50,40 @@ function DailyActivity() {
 
   return (
     <Section>
-        <div>
-          <H2>Today</H2>
-          {todayActivity && todayActivity.calories}/
-          {lastWeekActivity &&
-            getAverage(lastWeekActivity.map((day) => day.calories))}
-        </div>
-        <div>
-        <H2>Last week</H2>
-
-          {lastWeekActivity &&
-            getAverage(lastWeekActivity.map((day) => day.calories))}
-          /
-          {lastMonthActivity &&
-            getAverage(lastMonthActivity.map((day) => day.calories))}
-        </div>
-        <div>
-        <H2>Last month</H2>
-
-          {lastMonthActivity &&
-            getAverage(lastMonthActivity.map((day) => day.calories))}
-          /
-          {userData.dailyData &&
-            getAverage(userData.dailyData.map((day) => day.calories))}
-        </div>
+      <H2>Activity</H2>
+      <SubTitle>
+        Based on your calories we will compare your efforts with you history
+      </SubTitle>
+      <ActivityBlock
+        title="Today"
+        shortTerm={todayActivity?.calories}
+        longTerm={
+          lastWeekActivity &&
+          getAverage(lastWeekActivity?.map((day) => day.calories))
+        }
+      />
+      <ActivityBlock
+        title="Today"
+        shortTerm={
+          lastWeekActivity &&
+          getAverage(lastWeekActivity.map((day) => day.calories))
+        }
+        longTerm={
+          lastMonthActivity &&
+          getAverage(lastMonthActivity.map((day) => day.calories))
+        }
+      />
+      <ActivityBlock
+        title="Today"
+        shortTerm={
+          lastMonthActivity &&
+          getAverage(lastMonthActivity.map((day) => day.calories))
+        }
+        longTerm={
+          userData.dailyData &&
+          getAverage(userData.dailyData.map((day) => day.calories))
+        }
+      />
     </Section>
   );
 }
