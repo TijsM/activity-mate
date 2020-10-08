@@ -56,7 +56,7 @@ function DailyActivity() {
       </SubTitle>
       <ActivityBlock
         title="Yesterday"
-        subTitle='Yesterday compared to last week'
+        subTitle="Yesterday compared to last week's average"
         shortTerm={todayActivity?.calories}
         longTerm={
           lastWeekActivity &&
@@ -65,7 +65,7 @@ function DailyActivity() {
       />
       <ActivityBlock
         title="Last week"
-        subTitle='last week compared to last month'
+        subTitle="last week's average compared to last month's average"
         shortTerm={
           lastWeekActivity &&
           getAverage(lastWeekActivity.map((day) => day.calories))
@@ -77,7 +77,7 @@ function DailyActivity() {
       />
       <ActivityBlock
         title="Last month"
-        subTitle='last month compared to last year'
+        subTitle="last month's average compared to last years's average"
         shortTerm={
           lastMonthActivity &&
           getAverage(lastMonthActivity.map((day) => day.calories))

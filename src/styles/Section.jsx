@@ -7,4 +7,5 @@ export const Section = styled.section`
   max-width: 500px;
   margin: 24px;
   padding: 24px;
+  overflow: scroll;
 `;
