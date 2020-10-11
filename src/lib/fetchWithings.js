@@ -1,5 +1,5 @@
 import { buildUrl } from "./buildQueryParams";
-import { getCustomWithingsDate, getLastYear, getYesterday } from "./getWithingsDate";
+import { getCustomWithingsDate, getLastYear } from "./getWithingsDate";
 
 const access_token = localStorage.getItem("access_token");
 
@@ -38,3 +38,26 @@ export const getActivities = async () => {
 
   return activities;
 };
+
+export const getSleep = async( ) => {
+  const userSleep = await fetch(
+    `https://wbsapi.withings.net/v2/sleep`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + access_token,
+      },
+      body: buildUrl({
+        action: "getsummary",
+        startdateymd: getLastYear(),
+        enddateymd: getCustomWithingsDate(new Date()),
+      }),
+    }
+  );
+
+  const temp = await userSleep.json()
+  console.log('sleep', temp)
+
+  return temp;
+}
