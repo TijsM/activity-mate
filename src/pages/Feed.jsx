@@ -8,7 +8,7 @@ import { H1 } from "../styles/Types";
 import { HorizontalScroll } from "../styles/HorizontalScroll";
 
 function Feed() {
-  const { userData, setUserData } = useContext(WithingsContext);
+  const { setUserData } = useContext(WithingsContext);
 
   useEffect(() => {
     const fetchData = async () => {

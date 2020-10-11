@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { WithingsContext } from "../contexts/WithingsContext";
-import { getYesterday, getJsDate } from "../lib/getWithingsDate";
+import { getYesterday } from "../lib/getWithingsDate";
+import getLastDays from '../lib/getLastDays'
+import getAverage from '../lib/getAverage'
 import ActivityBlock from "../components/ActivityBlock";
 
 import { H2, SubTitle } from "../styles/Types";
@@ -19,32 +21,11 @@ function DailyActivity() {
         (day) => day.date === getYesterday()
       );
       setTodayActivity(today);
-      setLastWeekActivity(getLastDays(userData, 7));
-      setLastMonthActivity(getLastDays(userData, 30));
+      setLastWeekActivity(getLastDays(userData.dailyData, 7));
+      setLastMonthActivity(getLastDays(userData.dailyData, 30));
     }
   }, [userData]);
 
-  const getLastDays = (userData, days) => {
-    const todayDate = new Date();
-
-    const lastDays = userData.dailyData.filter((day) => {
-      const date = getJsDate(day)
-      if (date.getTime() > todayDate.getTime() - 1000 * 60 * 60 * 24 * days) {
-        return true;
-      }
-    });
-
-    return lastDays;
-  };
-
-  const getAverage = (numbers) => {
-    let sum = 0;
-    numbers.forEach((number) => {
-      sum += number;
-    });
-
-    return sum / numbers.length;
-  };
 
   return (
     <Section>
