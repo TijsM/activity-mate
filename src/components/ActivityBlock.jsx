@@ -29,6 +29,8 @@ const NumberBlock = styled.span`
 `;
 
 function ActivityBlock({ title, subTitle, shortTerm, longTerm }) {
+  console.log('short', shortTerm)
+  console.log('long', longTerm)
   return (
     <Container>
       <H3>{title}</H3>
