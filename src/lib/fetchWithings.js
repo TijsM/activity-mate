@@ -40,24 +40,37 @@ export const getActivities = async () => {
 };
 
 export const getSleep = async( ) => {
-  const userSleep = await fetch(
-    `https://wbsapi.withings.net/v2/sleep`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "Bearer " + access_token,
-      },
-      body: buildUrl({
-        action: "getsummary",
-        startdateymd: getLastYear(),
-        enddateymd: getCustomWithingsDate(new Date()),
-      }),
+
+  let sleep = [];
+
+  const getData = async (offset = 0) => {
+    const userSleep = await fetch(
+      `https://wbsapi.withings.net/v2/sleep`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: "Bearer " + access_token,
+        },
+        body: buildUrl({
+          action: "getsummary",
+          startdateymd: getLastYear(),
+          enddateymd: getCustomWithingsDate(new Date()),
+          offset
+        }),
+      }
+    );
+
+    const temp = await userSleep.json();
+    sleep = sleep.concat(temp.body.series);
+
+    console.log(temp.body)
+    if (temp.body.more) {
+      await getData(temp.body.offset);
     }
-  );
+  };
 
-  const temp = await userSleep.json()
-  console.log('sleep', temp)
+  await getData();
 
-  return temp;
+  return sleep;
 }

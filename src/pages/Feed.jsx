@@ -10,10 +10,10 @@ function Feed() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getActivities();
+      const activities = await getActivities();
       const sleep = await getSleep();
       console.log('sleep', sleep)
-      setUserData({ dailyData: data });
+      setUserData({ dailyData: activities, sleep });
     };
 
     fetchData();
