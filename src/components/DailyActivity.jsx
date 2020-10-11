@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { WithingsContext } from "../contexts/WithingsContext";
-import { Section } from "../styles/Section";
-import { getYesterday } from "../lib/getWithingsDate";
+import { getYesterday, getJsDate } from "../lib/getWithingsDate";
 import ActivityBlock from "../components/ActivityBlock";
+
 import { H2, SubTitle } from "../styles/Types";
+import { Section } from "../styles/Section";
+
 
 function DailyActivity() {
   const { userData } = useContext(WithingsContext);
@@ -26,11 +28,7 @@ function DailyActivity() {
     const todayDate = new Date();
 
     const lastDays = userData.dailyData.filter((day) => {
-      const date = new Date(
-        day.date.split("-")[0],
-        day.date.split("-")[1] - 1,
-        day.date.split("-")[2]
-      );
+      const date = getJsDate(day)
       if (date.getTime() > todayDate.getTime() - 1000 * 60 * 60 * 24 * days) {
         return true;
       }

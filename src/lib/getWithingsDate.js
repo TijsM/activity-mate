@@ -25,3 +25,14 @@ export const getYesterday = () => {
 
   return getCustomWithingsDate(yesterday);
 };
+
+
+export const getJsDate = (withingsDate) => {
+  const date = new Date(
+    withingsDate.date.split("-")[0],
+    withingsDate.date.split("-")[1] - 1,
+    withingsDate.date.split("-")[2]
+  );
+
+  return date;
+}
