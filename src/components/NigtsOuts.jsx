@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { WithingsContext } from "../contexts/WithingsContext";
 import getAverage from "../lib/getAverage";
+import getLastDays from "../lib/getLastDays";
 
 import { Section } from "../styles/Section";
 import { H2, SubTitle } from "../styles/Types";
@@ -22,7 +23,7 @@ function NightsOut() {
           userData.sleep.map((night) => {
             const date = new Date(night.startdate * 1000);
             let minutesInDay = date.getHours() * 60 + date.getMinutes();
-            //you can't go to sleep after 10 in the morning
+            // you can't go to sleep after 10 in the morning
             if (minutesInDay < 60 * 10) {
               minutesInDay = minutesInDay =
                 (date.getHours() + 24) * 60 + date.getMinutes();
@@ -34,6 +35,12 @@ function NightsOut() {
     }
   }, [userData]);
 
+  const formatTimeFromMinutes = (minutes) => {
+    const hr = Math.floor((minutes / 60) % 24);
+    const min = Math.round(((((minutes / 60) % 24) - hr) / 100) * 60 * 100);
+    return `${hr}:${min < 10 ? `0${min}` : min}`;
+  };
+
   return (
     <Section>
       <H2>Drunk nights</H2>
@@ -43,8 +50,8 @@ function NightsOut() {
       </SubTitle>
       your average HR during the nights is {Math.round(averageSleepHr)}
       <br />
-      your average time to go to bed is
-      {((averageSleepTimeInMinutes / 60)%24).toFixed(2).toString().replace(".", ":")}
+      your average time to go to bed is{" "}
+      {formatTimeFromMinutes(averageSleepTimeInMinutes)}
     </Section>
   );
 }
