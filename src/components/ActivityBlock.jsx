@@ -28,20 +28,18 @@ const NumberBlock = styled.span`
   margin: 8px;
 `;
 
-function ActivityBlock({ title, subTitle, shortTerm, longTerm }) {
-  console.log('short', shortTerm)
-  console.log('long', longTerm)
+function ActivityBlock({ title, subTitle, shortTerm, longTerm, unit='' }) {
   return (
     <Container>
       <H3>{title}</H3>
       <SubTitle>{subTitle}</SubTitle>
       <Data>
         <NumberBlock>
-          {Math.round(shortTerm)} <Unit>Kcal</Unit>
+          {Math.round(shortTerm)} <Unit>{unit}</Unit>
         </NumberBlock>
         /
         <NumberBlock>
-          {Math.round(longTerm)} <Unit>Kcal</Unit>
+          {Math.round(longTerm)} <Unit>{unit}</Unit>
         </NumberBlock>
       </Data>
       <Data>{(((shortTerm - longTerm) / longTerm) * 100).toFixed(2)}%</Data>{" "}
