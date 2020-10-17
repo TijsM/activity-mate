@@ -25,12 +25,6 @@ function Sleep() {
     }
   }, [userData]);
 
-  if (lastMonthSleep) {
-    console.log(
-      "map",
-      lastMonthSleep.map((day) => day.data.sleep_score)
-    );
-  }
 
   return (
     <Section>

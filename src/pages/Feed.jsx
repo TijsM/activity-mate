@@ -3,6 +3,7 @@ import { WithingsContext } from "../contexts/WithingsContext";
 import { getActivities, getSleep } from "../lib/fetchWithings";
 import DailyActivity from "../components/DailyActivity";
 import Sleep from "../components/Sleep";
+import SleepQuality from "../components/SleepQuality";
 
 import { H1 } from "../styles/Types";
 import { HorizontalScroll } from "../styles/HorizontalScroll";
@@ -25,6 +26,7 @@ function Feed() {
       <H1>Hi there!</H1>
       <HorizontalScroll>
         <DailyActivity />
+        <SleepQuality />
         <Sleep />
       </HorizontalScroll>
     </div>

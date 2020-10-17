@@ -62,7 +62,7 @@ export const getSleep = async () => {
     const temp = await userSleep.json();
     sleep = sleep.concat(temp.body.series);
 
-    console.log(temp.body);
+
     if (temp.body.more) {
       await getData(temp.body.offset);
     }
