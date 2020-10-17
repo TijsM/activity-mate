@@ -1,6 +1,8 @@
 const getAccessToken = async (code) => {
   clearUrl();
 
+  console.log('code', code)
+
   const res = await fetch("https://wbsapi.withings.net/v2/oauth2", {
     body: `action=requesttoken&grant_type=authorization_code&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CONSUMER_SECRET}&code=${code}&redirect_uri=http://localhost:3000/`,
     headers: {
@@ -13,9 +15,12 @@ const getAccessToken = async (code) => {
   const response = await res.json();
   console.log('res', response)
 
+  console.log('response', response)
+
   if (response.body && response.status === 0) {
     const now = new Date();
     now.setHours((now.getHours() + response.body.expires_in / 60 / 60) % 24);
+
 
     localStorage.setItem("access_token", response.body.access_token);
     localStorage.setItem("userId", response.body.userid);

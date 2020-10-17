@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { WithingsContext } from "../contexts/WithingsContext";
-import getAverage from "../lib/getAverage";
+import { WithingsContext } from "../../contexts/WithingsContext";
+import getAverage from "../../lib/getAverage";
 
-import { Section } from "../styles/Section";
-import { H2, SubTitle } from "../styles/Types";
+import { Section } from "../../styles/Section";
+import { H2, SubTitle } from "../../styles/Types";
 import {} from "react";
-import getLastDays from "../lib/getLastDays";
+import getLastDays from "../../lib/getLastDays";
 
 function SleepQuality() {
   const { userData } = useContext(WithingsContext);

@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
-import { WithingsContext } from "../contexts/WithingsContext";
-import { getYesterday } from "../lib/getWithingsDate";
-import getLastDays from '../lib/getLastDays'
-import getAverage from '../lib/getAverage'
-import ActivityBlock from "../components/ActivityBlock";
+import { WithingsContext } from "../../contexts/WithingsContext";
+import { getYesterday } from "../../lib/getWithingsDate";
+import getLastDays from '../../lib/getLastDays'
+import getAverage from '../../lib/getAverage'
+import ActivityBlock from "./ActivityBlock";
 
-import { H2, SubTitle } from "../styles/Types";
-import { Section } from "../styles/Section";
+import { H2, SubTitle } from "../../styles/Types";
+import { Section } from "../../styles/Section";
 
 
 function DailyActivity() {

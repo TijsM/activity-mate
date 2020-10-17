@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { H3 } from "../styles/Types";
+import { H3 } from "../../styles/Types";
 
 const Container = styled.article`
   padding: 24px 0px;

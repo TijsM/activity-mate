@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import { WithingsContext } from "../contexts/WithingsContext";
 import { getActivities, getSleep } from "../lib/fetchWithings";
-import DailyActivity from "../components/DailyActivity";
-import Sleep from "../components/Sleep";
-import SleepQuality from "../components/SleepQuality";
+import DailyActivity from "../components/legacy/DailyActivity";
+import Sleep from "../components/legacy/Sleep";
+import SleepQuality from "../components/legacy/SleepQuality";
 
 import { H1 } from "../styles/Types";
 import { HorizontalScroll } from "../styles/HorizontalScroll";
