@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import getAccessToken from "./lib/getAccessToken";
 import { WithingsContext } from "./contexts/WithingsContext";
+import Theme from './Theme'
+
 import "./App.css";
 
 import Auth from "./pages/Auth";
@@ -30,7 +32,7 @@ function App() {
   }, [userToken, isExpired]);
 
   return (
-    <div className="App">
+    <Theme>
       {isAuthenticated ? (
         <WithingsContext.Provider value={{ userData, setUserData }}>
           <Feed />
@@ -38,7 +40,7 @@ function App() {
       ) : (
         <Auth />
       )}
-    </div>
+    </Theme>
   );
 }
 
