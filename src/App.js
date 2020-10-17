@@ -8,6 +8,9 @@ import Feed from "./pages/Feed";
 
 function App() {
   const [userData, setUserData] = useState({});
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userToken, setUserToken] = useState();
+  const [isExpired, setIsExpired] = useState();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -16,20 +19,20 @@ function App() {
     if (state === "authenticated") {
       getAccessToken(code);
     }
+
+    setUserToken(localStorage.getItem("access_token"));
+    const expires = new Date(localStorage.getItem("token_expiration"));
+    setIsExpired(expires > new Date());
   }, []);
 
-  const isAuthenticated = () => {
-    const token = localStorage.getItem("access_token");
-    const expires = new Date(localStorage.getItem("token_expiration"));
-    const isExpired = expires < new Date();
-
-    return token && !isExpired;
-  };
+  useEffect(() => {
+    setIsAuthenticated(userToken && !isExpired);
+  }, [userToken, isExpired]);
 
   return (
     <div className="App">
-      {isAuthenticated() ? (
-        <WithingsContext.Provider value={{userData, setUserData}}>
+      {isAuthenticated ? (
+        <WithingsContext.Provider value={{ userData, setUserData }}>
           <Feed />
         </WithingsContext.Provider>
       ) : (

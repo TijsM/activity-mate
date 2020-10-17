@@ -11,6 +11,7 @@ const getAccessToken = async (code) => {
   });
 
   const response = await res.json();
+  console.log('res', response)
 
   if (response.body && response.status === 0) {
     const now = new Date();
@@ -29,7 +30,8 @@ const clearUrl = () => {
   if (window.location.href.includes("localhost") === false) {
     window.history.pushState("", "", "/");
   } else {
-    console.info("[DEV] not cleaning the url because in dev");
+    window.history.pushState("", "", "/");
+    // console.info("[DEV] not cleaning the url because in dev");
   }
 };
 
