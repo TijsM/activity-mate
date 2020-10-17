@@ -4,7 +4,7 @@ const getAccessToken = async (code) => {
   console.log('code', code)
 
   const res = await fetch("https://wbsapi.withings.net/v2/oauth2", {
-    body: `action=requesttoken&grant_type=authorization_code&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CONSUMER_SECRET}&code=${code}&redirect_uri=http://localhost:3000/`,
+    body: `action=requesttoken&grant_type=authorization_code&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CONSUMER_SECRET}&code=${code}&redirect_uri=${window.location.href}`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
 
