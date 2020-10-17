@@ -18,8 +18,12 @@ function NightsOut() {
   const [barrierTimeToBed, setBarrierTimeToBed] = useState(0);
 
   // in minutes
-  const [averateNightDuration, setAverageNightDuration] = useState(0);
+  const [averageNightDuration, setAverageNightDuration] = useState(0);
   const [barrierNightDuration, setBarrierNightDuration] = useState(0);
+
+  // percentage of night
+  const [averageDeepSleep, setAverageDeepSleep] = useState(0);
+  const [barrierDeepSleep, setBarrierDeepSleep] = useState(0);
 
   useEffect(() => {
     if (userData.sleep) {
@@ -52,6 +56,19 @@ function NightsOut() {
           })
         )
       );
+
+      setAverageDeepSleep(
+        getAverage(
+          userData.sleep.map((night) => {
+            const deepSleepDuration = night.data.deepsleepduration;
+            const startNight = new Date(night.startdate * 1000);
+            const endNight = new Date(night.enddate * 1000);
+            const nightDuration = (endNight - startNight) / 1000; // miliseconds --> seconds
+            const relativeDeepSleep = (deepSleepDuration / nightDuration) * 100;
+            return relativeDeepSleep;
+          })
+        )
+      );
     }
   }, [userData]);
 
@@ -68,8 +85,16 @@ function NightsOut() {
   }, [averageTimeToBed]);
 
   useEffect(() => {
-    setBarrierNightDuration(averateNightDuration + 90)
-  }, [averateNightDuration]);
+    if (averageNightDuration !== 0) {
+      setBarrierNightDuration(averageNightDuration - 90);
+    }
+  }, [averageNightDuration]);
+
+  useEffect(() => {
+    if (averageDeepSleep !== 0) {
+      setBarrierDeepSleep(averageDeepSleep - 15);
+    }
+  }, [averageDeepSleep]);
 
   const formatTimeFromMinutes = (minutes) => {
     const hr = Math.floor((minutes / 60) % 24);
@@ -91,7 +116,10 @@ function NightsOut() {
       your average time to go to bed is{" "}
       {formatTimeFromMinutes(averageTimeToBed)}
       <br />
-      your average night duration is {formatTimeFromMinutes(averateNightDuration)}
+      your average night duration is{" "}
+      {formatTimeFromMinutes(averageNightDuration)}
+      <br />
+      your average deep sleep is {Math.round(averageDeepSleep)}%
       <hr />
       <hr />
       you are concidered drunk when your average hr is bigger or equal then{" "}
@@ -99,7 +127,12 @@ function NightsOut() {
       <br />
       you went out if you fell asleep at:
       {formatTimeFromMinutes(barrierTimeToBed)}
-      you didn't sleep enough when you slept: {formatTimeFromMinutes(barrierNightDuration)}
+      <br />
+      you didn't sleep enough when you slept:{" "}
+      {formatTimeFromMinutes(barrierNightDuration)}
+      <br />
+      you didn't have enough deep sleep if you had less than{" "}
+      {Math.round(barrierDeepSleep)}%
     </Section>
   );
 }
