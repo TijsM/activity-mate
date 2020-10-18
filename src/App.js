@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import getAccessToken from "./lib/getAccessToken";
 import { WithingsContext } from "./contexts/WithingsContext";
-import Theme from './Theme'
+import Theme from "./Theme";
 
 import "./App.css";
 
 import Auth from "./pages/Auth";
 import Feed from "./pages/Feed";
+import Detail from "./pages/Detail";
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -35,7 +38,16 @@ function App() {
     <Theme>
       {isAuthenticated ? (
         <WithingsContext.Provider value={{ userData, setUserData }}>
-          <Feed />
+          <Router>
+            <Switch>
+              <Route path="/detail">
+                <Detail />
+              </Route>
+              <Route path="/">
+                <Feed />
+              </Route>
+            </Switch>
+          </Router>
         </WithingsContext.Provider>
       ) : (
         <Auth />

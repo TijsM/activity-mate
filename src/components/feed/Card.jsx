@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import {
   Card,
   CardIndicator,
@@ -7,9 +8,20 @@ import {
   CardRelChange,
   Context,
 } from "../../styles/Card";
+
+
 function FeedCard({activity, title, context, highlight, change}) {
+  const history = useHistory()
+
   return (
-    <Card>
+    <Card
+     onClick={() => {
+       history.push('detail')
+       history.push({
+        pathname: '/detail',
+        state: { detail: 'some_value' }
+    });
+     }}>
       <CardIndicator>{activity}</CardIndicator>
       <CardTitle>{title}</CardTitle>
       <Context>
