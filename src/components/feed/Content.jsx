@@ -1,6 +1,6 @@
-import React from "react";
+import React  from "react";
 import styled from "styled-components";
-import FeedCard from "./Card";
+import HeartRateCard from './cards/HeartRate'
 
 const Container = styled.div`
   margin-left: ${(props) => props.theme.spacing.margin};
@@ -8,15 +8,10 @@ const Container = styled.div`
 `;
 
 function Content() {
+
   return (
     <Container>
-      <FeedCard
-        activity="Sleep"
-        title="Heart rate by night"
-        context="Your average heart rate is"
-        highlight="58 BPM"
-        change="-14%"
-      />
+      <HeartRateCard/>
     </Container>
   );
 }
