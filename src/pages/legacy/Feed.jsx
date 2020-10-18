@@ -1,19 +1,12 @@
 import React, { useEffect, useContext } from "react";
-import styled from "styled-components";
 import { WithingsContext } from "../contexts/WithingsContext";
 import { getActivities, getSleep } from "../lib/fetchWithings";
-import LogoHeader from "../components/LogoHeader";
+import DailyActivity from "../components/legacy/DailyActivity";
+import Sleep from "../components/legacy/Sleep";
+import SleepQuality from "../components/legacy/SleepQuality";
+
 import { H1 } from "../styles/Types";
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Content = styled.div`
-  margin-left: ${(props) => props.theme.spacing.margin};
-  margin-right: ${(props) => props.theme.spacing.margin};
-`;
+import { HorizontalScroll } from "../styles/HorizontalScroll";
 
 function Feed() {
   const { setUserData } = useContext(WithingsContext);
@@ -29,12 +22,14 @@ function Feed() {
   }, [setUserData]);
 
   return (
-    <Container>
-      <LogoHeader />
-      <Content>
-
-      </Content>
-    </Container>
+    <div>
+      <H1>Hi there!</H1>
+      <HorizontalScroll>
+        <DailyActivity />
+        <SleepQuality />
+        <Sleep />
+      </HorizontalScroll>
+    </div>
   );
 }
 
