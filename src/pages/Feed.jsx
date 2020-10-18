@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { WithingsContext } from "../contexts/WithingsContext";
 import { getActivities, getSleep } from "../lib/fetchWithings";
 import LogoHeader from "../components/LogoHeader";
-import { H1 } from "../styles/Types";
+import FeedCard from "../components/FeedCard";
 
 const Container = styled.section`
   display: flex;
@@ -32,7 +32,13 @@ function Feed() {
     <Container>
       <LogoHeader />
       <Content>
-
+        <FeedCard
+          activity="Sleep"
+          title="Heart rate by night"
+          context="Your average heart rate is"
+          highlight="58 BPM"
+          change="-14%"
+        />
       </Content>
     </Container>
   );
