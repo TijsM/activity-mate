@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardRelChange,
   Context,
-} from "../styles/Card";
+} from "../../styles/Card";
 function FeedCard({activity, title, context, highlight, change}) {
   return (
     <Card>
