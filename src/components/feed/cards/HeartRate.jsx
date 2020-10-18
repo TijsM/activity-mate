@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { WithingsContext } from "../../../contexts/WithingsContext";
-import getAverage from '../../../lib/getAverage'
-import getLastDays from '../../../lib/getLastDays'
+import getAverage from "../../../lib/getAverage";
+import getLastDays from "../../../lib/getLastDays";
 import FeedCard from "../Card";
 
 function Content() {
@@ -34,11 +34,13 @@ function Content() {
       highlight={`${Math.round(averageSleepHr)} bpm`}
       change="-14%"
       data={{
-          average: averageSleepHr,
-          month: monthAverageHr,
-          week: weekAverageHr,
-          day: lastNightAverageHr,
-          unit: 'bpm'
+        average: averageSleepHr,
+        month: monthAverageHr,
+        week: weekAverageHr,
+        day: lastNightAverageHr,
+        unit: "bpm",
+        detailDescription:
+          "Having a low heart rate during the night means that you are resting. _The lower your heart rate, the better_",
       }}
     />
   );

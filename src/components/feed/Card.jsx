@@ -9,24 +9,23 @@ import {
   Context,
 } from "../../styles/Card";
 
-
-function FeedCard({activity, title, context, highlight, change}) {
-  const history = useHistory()
+function FeedCard(props) {
+  const history = useHistory();
 
   return (
     <Card
-     onClick={() => {
-       history.push('detail')
-       history.push({
-        pathname: '/detail',
-        state: { detail: 'some_value' }
-    });
-     }}>
-      <CardIndicator>{activity}</CardIndicator>
-      <CardTitle>{title}</CardTitle>
+      onClick={() => {
+        history.push({
+          pathname: "/detail",
+          state: { ...props },
+        });
+      }}
+    >
+      <CardIndicator>{props.activity}</CardIndicator>
+      <CardTitle>{props.title}</CardTitle>
       <Context>
-        {context} <br /> <CardHighlight>{highlight}</CardHighlight>{" "}
-        <CardRelChange>({change})</CardRelChange>
+        {props.context} <br /> <CardHighlight>{props.highlight}</CardHighlight>{" "}
+        <CardRelChange>({props.change})</CardRelChange>
       </Context>
     </Card>
   );
