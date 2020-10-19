@@ -38,6 +38,7 @@ const LinkContainer = styled.div`
   font-weight: bold;
   font-size: 24px;
   line-height: 28px;
+  cursor: pointer;
 `;
 
 function Auth() {

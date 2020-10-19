@@ -5,6 +5,8 @@ import getAverage from "../../lib/getAverage";
 import getLastDays from "../../lib/getLastDays";
 
 import LogoHeader from "../../components/LogoHeader";
+import BarChart from "../../components/feed/BarChart";
+
 import {
   Strong,
   Container,
@@ -21,10 +23,10 @@ function HeartRate() {
   const { userData } = useContext(WithingsContext);
 
   // in bpm
-  const [averageSleepHr, setAverageSleepHr] = useState(0);
-  const [monthAverageHr, setMonthAverageHr] = useState(0);
-  const [weekAverageHr, setWeekAverageHr] = useState(0);
   const [lastNightAverageHr, setLastNightAverageHr] = useState(0);
+  const [weekAverageHr, setWeekAverageHr] = useState(0);
+  const [monthAverageHr, setMonthAverageHr] = useState(0);
+  const [averageSleepHr, setAverageSleepHr] = useState(0);
 
   useEffect(() => {
     if (userData.sleep) {
@@ -57,6 +59,28 @@ function HeartRate() {
           Having a low heart rate during the night means that you are resting.
           <Strong> The lower your heart rate, the better</Strong>
         </Context>
+        <BarChart
+          chartData={[
+            {
+              label: "last night",
+              amount: lastNightAverageHr,
+            },
+            {
+              label: "last week",
+              amount: weekAverageHr,
+            },
+            {
+              label: "last month",
+              amount: monthAverageHr,
+            },
+            {
+              label: "last year",
+              amount: averageSleepHr,
+            },
+          ]}
+          unit="bpm"
+          relativeDevideValue={30}
+        />
         {Math.round(lastNightAverageHr)} bpm - last night
         <br />
         {Math.round(weekAverageHr)} bpm - last week
