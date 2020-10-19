@@ -9,16 +9,9 @@ function Content() {
 
   // in bpm
   const [averageSleepHr, setAverageSleepHr] = useState(0);
-  const [monthAverageHr, setMonthAverageHr] = useState(0);
-  const [weekAverageHr, setWeekAverageHr] = useState(0);
-  const [lastNightAverageHr, setLastNightAverageHr] = useState(0);
-
-  useEffect(() => {
+    useEffect(() => {
     if (userData.sleep) {
       setAverageSleepHr(getAverageSleepHr(userData.sleep));
-      setMonthAverageHr(getAverageSleepHr(getLastDays(userData.sleep, 30)));
-      setWeekAverageHr(getAverageSleepHr(getLastDays(userData.sleep, 7)));
-      setLastNightAverageHr(getAverageSleepHr(getLastDays(userData.sleep, 1)));
     }
   }, [userData]);
 
@@ -33,15 +26,7 @@ function Content() {
       context="Your average heart rate when sleeping"
       highlight={`${Math.round(averageSleepHr)} bpm`}
       change="-14%"
-      data={{
-        average: averageSleepHr,
-        month: monthAverageHr,
-        week: weekAverageHr,
-        day: lastNightAverageHr,
-        unit: "bpm",
-        detailDescription:
-          "Having a low heart rate during the night means that you are resting. _The lower your heart rate, the better_",
-      }}
+      detailRoute='/heart-rate'
     />
   );
 }

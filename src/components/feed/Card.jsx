@@ -16,7 +16,7 @@ function FeedCard(props) {
     <Card
       onClick={() => {
         history.push({
-          pathname: "/detail",
+          pathname: props.detailRoute,
           state: { ...props },
         });
       }}
