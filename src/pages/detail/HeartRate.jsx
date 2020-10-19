@@ -6,6 +6,7 @@ import getLastDays from "../../lib/getLastDays";
 
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
+import Compare from "../../components/feed/Compare";
 
 import {
   Strong,
@@ -28,6 +29,8 @@ function HeartRate() {
   const [monthAverageHr, setMonthAverageHr] = useState(0);
   const [averageSleepHr, setAverageSleepHr] = useState(0);
 
+  const UNIT = 'bpm'
+
   useEffect(() => {
     if (userData.sleep) {
       setAverageSleepHr(getAverageSleepHr(userData.sleep));
@@ -45,6 +48,25 @@ function HeartRate() {
   const history = useHistory();
   const props = location.state;
 
+  const data = [
+    {
+      label: "last night",
+      amount: lastNightAverageHr,
+    },
+    {
+      label: "last week",
+      amount: weekAverageHr,
+    },
+    {
+      label: "last month",
+      amount: monthAverageHr,
+    },
+    {
+      label: "last year",
+      amount: averageSleepHr,
+    },
+  ];
+
   return (
     <Container>
       <LogoHeader />
@@ -59,28 +81,8 @@ function HeartRate() {
           Having a low heart rate during the night means that you are resting.
           <Strong> The lower your heart rate, the better</Strong>
         </Context>
-        <BarChart
-          chartData={[
-            {
-              label: "last night",
-              amount: lastNightAverageHr,
-            },
-            {
-              label: "last week",
-              amount: weekAverageHr,
-            },
-            {
-              label: "last month",
-              amount: monthAverageHr,
-            },
-            {
-              label: "last year",
-              amount: averageSleepHr,
-            },
-          ]}
-          unit="bpm"
-          relativeDevideValue={30}
-        />
+        <BarChart chartData={data} unit={UNIT} />
+        <Compare data={data} unit={UNIT}/>
       </Content>
     </Container>
   );

@@ -73,8 +73,7 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
                 ))}
               </Label>
               <Data>
-                {Math.round(row.amount)}
-                {unit}
+                {Math.round(row.amount)} {unit}
               </Data>
               <Bar value={getRelativeAmount(row.amount)} />
             </Row>

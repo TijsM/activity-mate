@@ -7,6 +7,7 @@ const theme = {
     black: "#000000",
     textGrey: "#5F5F5F",
     lightGrey: "#a6a6a6",
+    superLightGrey: "#F0F0F0",
     green: "#38F257",
     red: "red",
   },
@@ -15,8 +16,8 @@ const theme = {
     bigMargin: "48px",
     padding: "22px",
   },
-  radius:{
-    card: "18px"
+  radius: {
+    card: "18px",
   },
 };
 
