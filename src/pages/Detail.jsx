@@ -1,54 +1,18 @@
 import React from "react";
-import styled from "styled-components";
 import { useLocation, useHistory } from "react-router-dom";
 
 import LogoHeader from "../components/LogoHeader";
-
+import {
+  Strong,
+  Container,
+  Content,
+  Header,
+  BackButton,
+  Back,
+  H1,
+  Context,
+} from "../styles/Details";
 import backImage from "../assets/back.svg";
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Content = styled.div`
-  margin-left: ${(props) => props.theme.spacing.margin};
-  margin-right: ${(props) => props.theme.spacing.margin};
-`;
-
-const Header = styled.div`
-  display: flex;
-`;
-const BackButton = styled.button`
-  background: none;
-  border: none;
-  min-width: 80px;
-  display: flex;
-  align-items: center;
-`;
-const Back = styled.img`
-  margin-right: auto;
-`;
-const H1 = styled.h1`
-  font-weight: bold;
-  font-size: 32px;
-  line-height: 37px;
-  margin: 0px;
-
-`;
-
-const Strong = styled.strong`
-  color: ${(props) => props.theme.colors.green};
-  font-weight: bold;
-`;
-
-const Context = styled.p`
-  margin-top: ${props => props.theme.spacing.bigMargin};
-  font-size: 18px;
-  line-height: 22px;
-
-  color: ${(props) => props.theme.colors.textGrey};
-`;
 
 const getHighlightedText = (text) => {
   console.log(text.split("_"));

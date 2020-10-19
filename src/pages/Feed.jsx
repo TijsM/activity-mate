@@ -28,7 +28,6 @@ function Feed() {
     <Container>
       <LogoHeader />
       <Content/>
-
     </Container>
   );
 }

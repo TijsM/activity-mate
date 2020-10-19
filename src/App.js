@@ -9,7 +9,7 @@ import "./App.css";
 
 import Auth from "./pages/Auth";
 import Feed from "./pages/Feed";
-import Detail from "./pages/Detail";
+import HeartRate from "./pages/detail/HeartRate";
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -40,8 +40,8 @@ function App() {
         <WithingsContext.Provider value={{ userData, setUserData }}>
           <Router>
             <Switch>
-              <Route path="/detail">
-                <Detail />
+              <Route path="/heart-rate">
+                <HeartRate />
               </Route>
               <Route path="/">
                 <Feed />
