@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { WithingsContext } from "./contexts/WithingsContext";
 
 import getAccessToken from "./lib/getAccessToken";
-import { WithingsContext } from "./contexts/WithingsContext";
-import Theme from "./Theme";
-
-import "./App.css";
+import { getActivities, getSleep } from "./lib/fetchWithings";
 
 import Auth from "./pages/Auth";
 import Feed from "./pages/Feed";
 import HeartRate from "./pages/detail/HeartRate";
+
+import Theme from "./Theme";
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -33,6 +33,16 @@ function App() {
   useEffect(() => {
     setIsAuthenticated(userToken && !isExpired);
   }, [userToken, isExpired]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const activities = await getActivities();
+      const sleep = await getSleep();
+      setUserData({ dailyData: activities, sleep });
+    };
+
+    fetchData();
+  }, [isAuthenticated]);
 
   return (
     <Theme>

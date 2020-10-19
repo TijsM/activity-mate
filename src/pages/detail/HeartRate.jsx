@@ -20,7 +20,6 @@ import backImage from "../../assets/back.svg";
 function HeartRate() {
   const { userData } = useContext(WithingsContext);
 
-  console.log(userData)
   // in bpm
   const [averageSleepHr, setAverageSleepHr] = useState(0);
   const [monthAverageHr, setMonthAverageHr] = useState(0);
@@ -58,11 +57,13 @@ function HeartRate() {
           Having a low heart rate during the night means that you are resting.
           <Strong> The lower your heart rate, the better</Strong>
         </Context>
-
-        {lastNightAverageHr} bpm
-        {weekAverageHr} bpm
-        {monthAverageHr} bpm
-        {averageSleepHr} bpm
+        {Math.round(lastNightAverageHr)} bpm - last night
+        <br />
+        {Math.round(weekAverageHr)} bpm - last week
+        <br />
+        {Math.round(monthAverageHr)} bpm - last month
+        <br />
+        {Math.round(averageSleepHr)} bpm - all time
       </Content>
     </Container>
   );

@@ -26,7 +26,7 @@ function Content() {
       context="Your average heart rate when sleeping"
       highlight={`${Math.round(averageSleepHr)} bpm`}
       change="-14%"
-      detailR='/heart-rate'
+      detailRoute='/heart-rate'
     />
   );
 }
