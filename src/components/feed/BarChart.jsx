@@ -17,7 +17,6 @@ const Row = styled.div`
 
 const Label = styled.span`
   font-size: 10px;
-  word-spacing: 60px;
 `;
 const Data = styled.span`
   font-size: 10px;
@@ -29,6 +28,9 @@ const Bar = styled.div`
   background-color: ${(props) => props.theme.colors.green};
   border-radius: 35px;
 `;
+const P = styled.p`
+  margin: 0px;
+`;
 
 function BarChart({ chartData, unit, relativeDevideValue }) {
   const [data, setData] = useState(chartData);
@@ -38,7 +40,7 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
   }, [chartData]);
 
   const getRelativeAmount = (amount) => {
-    amount = Math.round(amount)
+    amount = Math.round(amount);
     const max = Math.round(
       Math.max.apply(
         Math,
@@ -54,7 +56,7 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
     );
 
     // making sure the smallest bar is half the length
-    const subtractValue = min - (max - min)
+    const subtractValue = min - (max - min);
     return ((amount - subtractValue) / (max - subtractValue)) * 100;
   };
 
@@ -65,7 +67,11 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
         data.map((row, i) => {
           return (
             <Row key={i}>
-              <Label>{row.label}</Label>
+              <Label>
+                {row.label.split(" ").map((word, index) => (
+                  <P key={index}>{word}</P>
+                ))}
+              </Label>
               <Data>
                 {Math.round(row.amount)}
                 {unit}

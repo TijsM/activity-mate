@@ -63,47 +63,24 @@ function HeartRate() {
           chartData={[
             {
               label: "last night",
-              amount: 100,
+              amount: lastNightAverageHr,
             },
             {
               label: "last week",
-              amount: 10,
+              amount: weekAverageHr,
             },
             {
               label: "last month",
-              amount: 40,
+              amount: monthAverageHr,
             },
             {
               label: "last year",
-              amount: 80,
+              amount: averageSleepHr,
             },
-            // {
-            //   label: "last night",
-            //   amount: lastNightAverageHr,
-            // },
-            // {
-            //   label: "last week",
-            //   amount: weekAverageHr,
-            // },
-            // {
-            //   label: "last month",
-            //   amount: monthAverageHr,
-            // },
-            // {
-            //   label: "last year",
-            //   amount: averageSleepHr,
-            // },
           ]}
           unit="bpm"
           relativeDevideValue={30}
         />
-        {Math.round(lastNightAverageHr)} bpm - last night
-        <br />
-        {Math.round(weekAverageHr)} bpm - last week
-        <br />
-        {Math.round(monthAverageHr)} bpm - last month
-        <br />
-        {Math.round(averageSleepHr)} bpm - all time
       </Content>
     </Container>
   );
