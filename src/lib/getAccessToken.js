@@ -19,13 +19,15 @@ const getAccessToken = async (code) => {
 
   if (response.body && response.status === 0) {
     const now = new Date();
-    now.setHours((now.getHours() + response.body.expires_in / 60 / 60) % 24);
+    // now.setHours((now.getHours() + response.body.expires_in / 60 / 60) % 24);
+
+    console.log(response.body.expires_in)
 
 
     localStorage.setItem("access_token", response.body.access_token);
     localStorage.setItem("userId", response.body.userid);
     localStorage.setItem("refresh_token", response.body.refresh_token);
-    localStorage.setItem("token_expiration", now);
+    localStorage.setItem("token_expiration", now.getTime()+response.body.expires_in * 1000);
 
     window.location.reload()
   }
