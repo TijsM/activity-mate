@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { WithingsContext } from "../../../contexts/WithingsContext";
 import getAverage from "../../../lib/getAverage";
-import getLastDays from "../../../lib/getLastDays";
 import FeedCard from "../Card";
 
 function Content() {
