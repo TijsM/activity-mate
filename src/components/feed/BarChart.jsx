@@ -38,6 +38,7 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
   }, [chartData]);
 
   const getRelativeAmount = (amount) => {
+    amount = Math.round(amount)
     const max = Math.round(
       Math.max.apply(
         Math,
@@ -52,12 +53,9 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
       )
     );
 
-    const subtractValue = min - min * 0.2;
-    console.log("sub value", subtractValue);
-
-    const res = ((amount - subtractValue) / (max - subtractValue)) * 100;
-    console.log("res", res);
-    return res;
+    // making sure the smallest bar is half the length
+    const subtractValue = min - (max - min)
+    return ((amount - subtractValue) / (max - subtractValue)) * 100;
   };
 
   return (

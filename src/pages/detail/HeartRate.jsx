@@ -63,20 +63,36 @@ function HeartRate() {
           chartData={[
             {
               label: "last night",
-              amount: lastNightAverageHr,
+              amount: 100,
             },
             {
               label: "last week",
-              amount: weekAverageHr,
+              amount: 10,
             },
             {
               label: "last month",
-              amount: monthAverageHr,
+              amount: 40,
             },
             {
               label: "last year",
-              amount: averageSleepHr,
+              amount: 80,
             },
+            // {
+            //   label: "last night",
+            //   amount: lastNightAverageHr,
+            // },
+            // {
+            //   label: "last week",
+            //   amount: weekAverageHr,
+            // },
+            // {
+            //   label: "last month",
+            //   amount: monthAverageHr,
+            // },
+            // {
+            //   label: "last year",
+            //   amount: averageSleepHr,
+            // },
           ]}
           unit="bpm"
           relativeDevideValue={30}
