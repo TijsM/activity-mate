@@ -26,8 +26,12 @@ function App() {
     }
 
     setUserToken(localStorage.getItem("access_token"));
-    const expires = new Date(localStorage.getItem("token_expiration"));
-    setIsExpired(expires.getTime() < new Date().getTime());
+    const expires = parseInt(localStorage.getItem("token_expiration"), 10);
+
+    console.log('exp', expires)
+
+    console.log('now', new Date().getTime())
+    setIsExpired(expires < new Date().getTime());
   }, []);
 
   useEffect(() => {
