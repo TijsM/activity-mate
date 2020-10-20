@@ -15,8 +15,6 @@ import {
 import backImage from "../assets/back.svg";
 
 const getHighlightedText = (text) => {
-  console.log(text.split("_"));
-
   return text.split("_").map((part, i) => {
     if (i === 1) {
       return <Strong key={i}>{part}</Strong>;
@@ -30,8 +28,6 @@ function Detail() {
   const location = useLocation();
   const history = useHistory();
   const props = location.state;
-
-  console.log(props);
 
   return (
     <Container>
