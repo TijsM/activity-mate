@@ -8,7 +8,8 @@ function Content() {
 
   // in bpm
   const [averageSleepHr, setAverageSleepHr] = useState(0);
-    useEffect(() => {
+
+  useEffect(() => {
     if (userData.sleep) {
       setAverageSleepHr(getAverageSleepHr(userData.sleep));
     }
@@ -24,8 +25,8 @@ function Content() {
       title="Heart rate by night"
       context="Your average heart rate when sleeping"
       highlight={`${Math.round(averageSleepHr)} bpm`}
-      change="-14%"
-      detailRoute='/heart-rate'
+      change=""
+      detailRoute="/heart-rate"
     />
   );
 }
