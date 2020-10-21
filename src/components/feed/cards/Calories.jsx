@@ -22,9 +22,8 @@ function Calories() {
     <FeedCard
       activity="Activity"
       title="Extra calories burned a day"
-      context="Your average heart rate when sleeping"
+      context="Extra calories burned yesterday"
       highlight={Math.round(todayBurnedCalories) + " kcal"}
-      change=""
       detailRoute="/burned-calories"
     />
   );

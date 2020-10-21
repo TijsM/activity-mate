@@ -26,7 +26,7 @@ function FeedCard(props) {
       <CardTitle activity={props.activity}>{props.title}</CardTitle>
       <Context activity={props.activity}>
         {props.context} <br /> <CardHighlight>{props.highlight}</CardHighlight>{" "}
-        <CardRelChange>({props.change})</CardRelChange>
+        {/* <CardRelChange>({props.change})</CardRelChange> */}
       </Context>
     </Card>
   );

@@ -4,6 +4,7 @@ import { WithingsContext } from "../../../contexts/WithingsContext";
 
 import getAverageNightDuration from "../../../lib/getAverageNightDuration";
 import formatTimeFromMinutes from "../../../lib/formatTimeFromMinutes";
+import getLastDays from "../../../lib/getLastDays";
 
 import FeedCard from "../Card";
 
@@ -15,7 +16,7 @@ function SleepDuration() {
 
   useEffect(() => {
     if (userData.sleep) {
-      setAverageNightDuration(getAverageNightDuration(userData.sleep));
+      setAverageNightDuration(getAverageNightDuration(userData.sleep, 1));
     }
   }, [userData]);
 
@@ -23,13 +24,12 @@ function SleepDuration() {
     <FeedCard
       activity="Sleep"
       title="Sleep duration"
-      context="Your average night is"
+      context="Last night you slept "
       highlight={`${formatTimeFromMinutes(
         Math.round(averageNightDuration),
         "u ",
         "min"
       )}`}
-      change=""
       detailRoute="/night-duration"
     />
   );

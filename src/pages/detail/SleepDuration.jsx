@@ -3,7 +3,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { WithingsContext } from "../../contexts/WithingsContext";
 
 import getLastDays from "../../lib/getLastDays";
-import getAverageNightDuration from '../../lib/getAverageNightDuration'
+import getAverageNightDuration from "../../lib/getAverageNightDuration";
 
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
@@ -28,14 +28,14 @@ function SleepDuration() {
   const props = location.state;
 
   // in minutes
-  const [lastNightNightDuration,  setLastNightDuration] = useState(0)
+  const [lastNightNightDuration, setLastNightDuration] = useState(0);
   const [weekNightDuration, setWeekNightDuration] = useState(0);
   const [monthNightDuration, setMonthNightDuration] = useState(0);
   const [averageNightDuration, setAverageNightDuration] = useState(0);
 
   useEffect(() => {
     if (userData.sleep) {
-        setLastNightDuration(getAverageNightDuration(userData.sleep, 1))
+      setLastNightDuration(getAverageNightDuration(userData.sleep, 1));
       setAverageNightDuration(getAverageNightDuration(userData.sleep));
       setMonthNightDuration(
         getAverageNightDuration(getLastDays(userData.sleep, 30))
@@ -76,11 +76,11 @@ function SleepDuration() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-         DO RESEARCH AND FILL THIS IN!
-         <Strong>DO RESEARCH</Strong>
+          TODOOOOOOO
+          <Strong> TODOOOOOOOO</Strong>
         </Context>
-        <BarChart chartData={data} unit={'minutes'} />
-        <Compare data={data} unit={'minutes'}  />
+        <BarChart chartData={data} unit={"minutes"} />
+        <Compare data={data} unit={"minutes"} />
       </Content>
     </Container>
   );

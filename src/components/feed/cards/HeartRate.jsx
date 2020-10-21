@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { WithingsContext } from "../../../contexts/WithingsContext";
-import getAverage from "../../../lib/getAverage";
+import getLastDays from '../../../lib/getLastDays'
+
 import FeedCard from "../Card";
 
 function HeartRate() {
@@ -16,16 +17,15 @@ function HeartRate() {
   }, [userData]);
 
   const getAverageSleepHr = (sleep) => {
-    return getAverage(sleep.map((night) => night.data.hr_average));
+    return getLastDays(sleep, 1)[0].data.hr_average
   };
 
   return (
     <FeedCard
       activity="Sleep"
       title="Heart rate by night"
-      context="Your average heart rate when sleeping"
+      context="Last night, your average heart rate was"
       highlight={`${Math.round(averageSleepHr)} bpm`}
-      change=""
       detailRoute="/heart-rate"
     />
   );

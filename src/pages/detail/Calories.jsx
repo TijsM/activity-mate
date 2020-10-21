@@ -80,8 +80,8 @@ function Calories() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-          Having a low heart rate during the night means that you are resting.
-          <Strong> The lower your heart rate, the better</Strong>
+          TODOOOOOOO
+          <Strong> TODOOOOOOOO</Strong>
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />
