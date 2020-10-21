@@ -11,6 +11,7 @@ import Feed from "./pages/Feed";
 import HeartRate from "./pages/detail/HeartRate";
 import NightDuration from "./pages/detail/SleepDuration";
 import Calories from "./pages/detail/Calories";
+import DeepSleep from "./pages/detail/DeepSleep";
 
 import Theme from "./Theme";
 
@@ -62,6 +63,9 @@ function App() {
               </Route>
               <Route path="/burned-calories">
                 <Calories />
+              </Route>
+              <Route path="/deep-sleep">
+                <DeepSleep />
               </Route>
               <Route path="/">
                 <Feed />
