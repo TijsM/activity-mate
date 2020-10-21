@@ -12,4 +12,8 @@ const getLastDays = (data, days) => {
   return lastDays;
 };
 
+export const getByDate =(data, date) => {
+  return data.find(day => day.date === date)
+}
+
 export default getLastDays;

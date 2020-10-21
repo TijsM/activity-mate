@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import formatTimeFromMinutes from '../../lib/formatTimeFromMinutes'
-
+import formatTimeFromMinutes from "../../lib/formatTimeFromMinutes";
 
 const Container = styled.article`
-  box-shadow: 0px 4px 16px rgba(200, 200, 200, 0.18);
+  box-shadow: ${(props) => props.theme.shadow.card};
   border-radius: ${(props) => props.theme.radius.card};
   padding: ${(props) => props.theme.spacing.padding};
 `;
@@ -42,11 +41,10 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
   }, [chartData]);
 
   const formatValue = (value) => {
-    if(unit === "minutes"){
-      return formatTimeFromMinutes(value, 'u ')
-    }
-    else return Math.round(value) + ' ' + unit
-  }
+    if (unit === "minutes") {
+      return formatTimeFromMinutes(value, "u ");
+    } else return Math.round(value) + " " + unit;
+  };
 
   const getRelativeAmount = (amount) => {
     amount = Math.round(amount);
@@ -72,7 +70,7 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
   return (
     <Container>
       {data &&
-        data[0].amount !== 0 &&
+        data[1].amount !== 0 &&
         data.map((row, i) => {
           return (
             <Row key={i}>
@@ -81,9 +79,7 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
                   <P key={index}>{word}</P>
                 ))}
               </Label>
-              <Data>
-                {formatValue(row.amount)}
-              </Data>
+              <Data>{formatValue(row.amount)}</Data>
               <Bar value={getRelativeAmount(row.amount)} />
             </Row>
           );

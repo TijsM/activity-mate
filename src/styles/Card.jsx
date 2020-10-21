@@ -6,7 +6,7 @@ export const Card = styled.article`
       ? props.theme.colors.black
       : props.theme.colors.white};
   color: white;
-  box-shadow: 0px 4px 16px rgba(200, 200, 200, 0.18);
+  box-shadow: ${props => props.theme.shadow.card};
   border-radius: ${(props) => props.theme.radius.card};
   padding: ${(props) => props.theme.spacing.padding};
   box-sizing: border-box;

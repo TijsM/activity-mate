@@ -18,7 +18,6 @@ function Calories() {
     }
   }, [userData]);
 
-  console.log(todayBurnedCalories);
   return (
     <FeedCard
       activity="Activity"
