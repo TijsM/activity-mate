@@ -8,6 +8,7 @@ import { getActivities, getSleep } from "./lib/fetchWithings";
 import Auth from "./pages/Auth";
 import Feed from "./pages/Feed";
 import HeartRate from "./pages/detail/HeartRate";
+import NightDuration from './pages/detail/SleepDuration'
 
 import Theme from "./Theme";
 
@@ -56,6 +57,9 @@ function App() {
             <Switch>
               <Route path="/heart-rate">
                 <HeartRate />
+              </Route>
+              <Route path="/night-duration">
+                <NightDuration />
               </Route>
               <Route path="/">
                 <Feed />

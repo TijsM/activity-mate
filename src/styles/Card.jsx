@@ -6,9 +6,10 @@ export const Card = styled.article`
   box-shadow: 0px 4px 16px rgba(200, 200, 200, 0.18);
   border-radius: ${(props) => props.theme.radius.card};
   padding: ${(props) => props.theme.spacing.padding};
-    box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
   max-width: 500px;
+  margin-top: ${props => props.theme.spacing.bigMargin};
 `;
 
 export const CardIndicator = styled.p`

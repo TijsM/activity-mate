@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { WithingsContext } from "../../contexts/WithingsContext";
-import getAverage from "../../lib/getAverage";
+
 import getLastDays from "../../lib/getLastDays";
+import getAverageNightDuration from '../../lib/getAverageNightDuration'
+import formatTimeFromMinutes from '../../lib/formatTimeFromMinutes'
 
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
@@ -20,51 +22,49 @@ import {
 } from "../../styles/Details";
 import backImage from "../../assets/back.svg";
 
-function HeartRate() {
+function SleepDuration() {
   const { userData } = useContext(WithingsContext);
   const location = useLocation();
   const history = useHistory();
   const props = location.state;
 
-  // in bpm
-  const [lastNightAverageHr, setLastNightAverageHr] = useState(0);
-  const [weekAverageHr, setWeekAverageHr] = useState(0);
-  const [monthAverageHr, setMonthAverageHr] = useState(0);
-  const [averageSleepHr, setAverageSleepHr] = useState(0);
-
-  const UNIT = "bpm";
+  // in minutes
+  const [lastNightNightDuration,  setLastNightDuration] = useState(0)
+  const [weekNightDuration, setWeekNightDuration] = useState(0);
+  const [monthNightDuration, setMonthNightDuration] = useState(0);
+  const [averageNightDuration, setAverageNightDuration] = useState(0);
 
   useEffect(() => {
     if (userData.sleep) {
-      setAverageSleepHr(getAverageSleepHr(userData.sleep));
-      setMonthAverageHr(getAverageSleepHr(getLastDays(userData.sleep, 30)));
-      setWeekAverageHr(getAverageSleepHr(getLastDays(userData.sleep, 7)));
-      setLastNightAverageHr(getAverageSleepHr(getLastDays(userData.sleep, 1)));
+        setLastNightDuration(getAverageNightDuration(userData.sleep, 1))
+      setAverageNightDuration(getAverageNightDuration(userData.sleep));
+      setMonthNightDuration(
+        getAverageNightDuration(getLastDays(userData.sleep, 30))
+      );
+      setWeekNightDuration(
+        getAverageNightDuration(getLastDays(userData.sleep, 7))
+      );
     }
-  }, [userData]);
+  }, [userData.sleep]);
 
   const data = [
     {
       label: "last night",
-      amount: lastNightAverageHr,
+      amount: lastNightNightDuration,
     },
     {
       label: "last week",
-      amount: weekAverageHr,
+      amount: weekNightDuration,
     },
     {
       label: "last month",
-      amount: monthAverageHr,
+      amount: monthNightDuration,
     },
     {
       label: "last year",
-      amount: averageSleepHr,
+      amount: averageNightDuration,
     },
   ];
-
-  const getAverageSleepHr = (sleep) => {
-    return getAverage(sleep.map((night) => night.data.hr_average));
-  };
 
   return (
     <Container>
@@ -77,14 +77,14 @@ function HeartRate() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-          Having a low heart rate during the night means that you are resting.
-          <Strong> The lower your heart rate, the better</Strong>
+         DO RESEARCH AND FILL THIS IN!
+         <Strong>DO RESEARCH</Strong>
         </Context>
-        <BarChart chartData={data} unit={UNIT} />
-        <Compare data={data} unit={UNIT} />
+        <BarChart chartData={data} unit={'minutes'} />
+        <Compare data={data} unit={'minutes'}  />
       </Content>
     </Container>
   );
 }
 
-export default HeartRate;
+export default SleepDuration;
