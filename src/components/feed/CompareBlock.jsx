@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useEffect } from "react";
+import formatTimeFromMinutes from '../../lib/formatTimeFromMinutes'
 
 const Container = styled.article`
   margin-top: ${(props) => props.theme.spacing.margin};
@@ -54,13 +54,20 @@ function CompareBlock({ title, val1, label1, val2, label2, unit }) {
     return dif > 0 ? `(+${dif}%)` : `(${dif}%)`;
   };
 
+  const formatValue = (value) => {
+    if(unit === "minutes"){
+      return formatTimeFromMinutes(value, 'u ')
+    }
+    else return value + ' ' + unit
+  }
+
   return (
     <Container>
       <H2>{title}</H2>
       <DataBlock>
         <Data>
           <Amount>
-            {val1} {unit}
+            {formatValue(val1)}
           </Amount>
           <Label>{label1}</Label>
         </Data>
@@ -69,7 +76,7 @@ function CompareBlock({ title, val1, label1, val2, label2, unit }) {
         </Dif>
         <Data right={true}>
           <Amount>
-            {val2} {unit}
+            {(formatValue(val2))}
           </Amount>
           <Label>{label2}</Label>
         </Data>

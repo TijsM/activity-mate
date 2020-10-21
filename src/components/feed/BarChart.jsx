@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useState } from "react";
+import formatTimeFromMinutes from '../../lib/formatTimeFromMinutes'
+
 
 const Container = styled.article`
   box-shadow: 0px 4px 16px rgba(200, 200, 200, 0.18);
@@ -39,6 +41,13 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
     setData(chartData);
   }, [chartData]);
 
+  const formatValue = (value) => {
+    if(unit === "minutes"){
+      return formatTimeFromMinutes(value, 'u ')
+    }
+    else return Math.round(value) + ' ' + unit
+  }
+
   const getRelativeAmount = (amount) => {
     amount = Math.round(amount);
     const max = Math.round(
@@ -73,7 +82,7 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
                 ))}
               </Label>
               <Data>
-                {Math.round(row.amount)} {unit}
+                {formatValue(row.amount)}
               </Data>
               <Bar value={getRelativeAmount(row.amount)} />
             </Row>
