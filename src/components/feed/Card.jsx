@@ -14,6 +14,7 @@ function FeedCard(props) {
 
   return (
     <Card
+      activity={props.activity}
       onClick={() => {
         history.push({
           pathname: props.detailRoute,
@@ -22,8 +23,8 @@ function FeedCard(props) {
       }}
     >
       <CardIndicator>{props.activity}</CardIndicator>
-      <CardTitle>{props.title}</CardTitle>
-      <Context>
+      <CardTitle activity={props.activity}>{props.title}</CardTitle>
+      <Context activity={props.activity}>
         {props.context} <br /> <CardHighlight>{props.highlight}</CardHighlight>{" "}
         <CardRelChange>({props.change})</CardRelChange>
       </Context>

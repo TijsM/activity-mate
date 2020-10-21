@@ -7,8 +7,10 @@ import { getActivities, getSleep } from "./lib/fetchWithings";
 
 import Auth from "./pages/Auth";
 import Feed from "./pages/Feed";
+
 import HeartRate from "./pages/detail/HeartRate";
-import NightDuration from './pages/detail/SleepDuration'
+import NightDuration from "./pages/detail/SleepDuration";
+import Calories from "./pages/detail/Calories";
 
 import Theme from "./Theme";
 
@@ -29,9 +31,6 @@ function App() {
     setUserToken(localStorage.getItem("access_token"));
     const expires = parseInt(localStorage.getItem("token_expiration"), 10);
 
-    console.log('exp', expires)
-
-    console.log('now', new Date().getTime())
     setIsExpired(expires < new Date().getTime());
   }, []);
 
@@ -60,6 +59,9 @@ function App() {
               </Route>
               <Route path="/night-duration">
                 <NightDuration />
+              </Route>
+              <Route path="/burned-calories">
+                <Calories />
               </Route>
               <Route path="/">
                 <Feed />

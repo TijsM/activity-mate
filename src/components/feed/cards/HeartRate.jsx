@@ -3,7 +3,7 @@ import { WithingsContext } from "../../../contexts/WithingsContext";
 import getAverage from "../../../lib/getAverage";
 import FeedCard from "../Card";
 
-function Content() {
+function HeartRate() {
   const { userData } = useContext(WithingsContext);
 
   // in bpm
@@ -30,4 +30,4 @@ function Content() {
     />
   );
 }
-export default Content;
+export default HeartRate;
