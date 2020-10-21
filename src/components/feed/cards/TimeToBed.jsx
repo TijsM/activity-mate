@@ -10,7 +10,7 @@ import FeedCard from "../Card";
 function TimeToBed() {
     const { userData } = useContext(WithingsContext);
 
-    // in bpm
+    // in minutes
     const [averageTTB, setAverageTTB] = useState(0);
 
     useEffect(() => {
