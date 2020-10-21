@@ -29,9 +29,6 @@ function App() {
     setUserToken(localStorage.getItem("access_token"));
     const expires = parseInt(localStorage.getItem("token_expiration"), 10);
 
-    console.log('exp', expires)
-
-    console.log('now', new Date().getTime())
     setIsExpired(expires < new Date().getTime());
   }, []);
 
@@ -59,7 +56,8 @@ function App() {
                 <HeartRate />
               </Route>
               <Route path="/night-duration">
-                <NightDuration />
+                <NightDuration
+                 />
               </Route>
               <Route path="/">
                 <Feed />
