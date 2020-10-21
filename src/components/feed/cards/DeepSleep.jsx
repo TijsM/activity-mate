@@ -23,7 +23,7 @@ function DeepSleep() {
       title="Relative deep sleep a night"
       context="Last night, your deep sleep was"
       highlight={`${Math.round(averageDeepSleep)}%`}
-      detailRoute="/heart-rate"
+      detailRoute="/deep-sleep"
     />
   );
 }

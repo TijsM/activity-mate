@@ -4,7 +4,6 @@ import { WithingsContext } from "../../../contexts/WithingsContext";
 
 import getAverageNightDuration from "../../../lib/getAverageNightDuration";
 import formatTimeFromMinutes from "../../../lib/formatTimeFromMinutes";
-import getLastDays from "../../../lib/getLastDays";
 
 import FeedCard from "../Card";
 
