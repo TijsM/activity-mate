@@ -3,6 +3,7 @@ import styled from "styled-components";
 import HeartRateCard from './cards/HeartRate'
 import SleepDurationCard from './cards/SleepDuration'
 import Calories from './cards/Calories'
+import DeepSleep from './cards/DeepSleep'
 
 
 const Container = styled.div`
@@ -11,12 +12,12 @@ const Container = styled.div`
 `;
 
 function Content() {
-
   return (
     <Container>
       <HeartRateCard/>
       <Calories/>
       <SleepDurationCard/>
+      <DeepSleep/>
     </Container>
   );
 }
