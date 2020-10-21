@@ -12,6 +12,7 @@ import HeartRate from "./pages/detail/HeartRate";
 import NightDuration from "./pages/detail/SleepDuration";
 import Calories from "./pages/detail/Calories";
 import DeepSleep from "./pages/detail/DeepSleep";
+import TimeToBed from "./pages/detail/TimeToBed"
 
 import Theme from "./Theme";
 
@@ -66,6 +67,9 @@ function App() {
               </Route>
               <Route path="/deep-sleep">
                 <DeepSleep />
+              </Route>
+              <Route path="/time-to-bed">
+                <TimeToBed />
               </Route>
               <Route path="/">
                 <Feed />
