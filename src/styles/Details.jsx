@@ -19,6 +19,7 @@ export const BackButton = styled.button`
   min-width: 80px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 export const Back = styled.img`
   margin-right: auto;
