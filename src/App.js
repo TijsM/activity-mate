@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { WithingsContext } from "./contexts/WithingsContext";
-
-import { getActivities, getSleep } from "./lib/fetchWithings";
+import { WithingsProvider } from "./contexts/WithingsContext";
 
 import Auth from "./pages/Auth";
 import Feed from "./pages/Feed";
@@ -18,23 +16,12 @@ import TimeToBed from "./pages/detail/TimeToBed"
 import Theme from "./Theme";
 
 function App() {
-  const [userData, setUserData] = useState({});
   const isAuthenticated = useAuth()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const activities = await getActivities();
-      const sleep = await getSleep();
-      setUserData({ dailyData: activities, sleep });
-    };
-
-    fetchData();
-  }, [isAuthenticated]);
 
   return (
     <Theme>
       {isAuthenticated ? (
-        <WithingsContext.Provider value={{ userData, setUserData }}>
+        <WithingsProvider>
           <Router>
             <Switch>
               <Route path="/heart-rate">
@@ -57,7 +44,7 @@ function App() {
               </Route>
             </Switch>
           </Router>
-        </WithingsContext.Provider>
+        </WithingsProvider>
       ) : (
         <Auth />
       )}
