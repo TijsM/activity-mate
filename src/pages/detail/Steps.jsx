@@ -2,8 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { WithingsContext } from "../../contexts/WithingsContext";
 import getAverage from "../../lib/getAverage";
-import getLastDays, {getByDate} from "../../lib/getLastDays";
-import { getYesterday } from "../../lib/getWithingsDate";
+import getLastDays from "../../lib/getLastDays";
 
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
@@ -21,51 +20,53 @@ import {
 } from "../../styles/Details";
 import backImage from "../../assets/back.svg";
 
-function Calories() {
+function Steps() {
   const { userData } = useContext(WithingsContext);
   const location = useLocation();
   const history = useHistory();
   const props = location.state;
 
   // in kcal
-  const [yesterdayKcal, setYesterdayKcal] = useState(0);
-  const [weekKcal, setWeekKcal] = useState(0);
-  const [monthKcal, setMonthKcal] = useState(0);
-  const [averageKcal, setAverageKcal] = useState(0);
+  const [todaySteps, setTodaySteps] = useState(0);
+  const [weekSteps, setWeekSteps] = useState(0);
+  const [monthSteps, setMonthSteps] = useState(0);
+  const [averageSteps, setAverageSteps] = useState(0);
 
-  const UNIT = "kcal";
+  const UNIT = "steps";
 
   useEffect(() => {
     if (userData.dailyData) {
-      setYesterdayKcal(getByDate(userData.dailyData, getYesterday()).calories);
-      setWeekKcal(getAverageKcal(getLastDays(userData.dailyData, 7)));
-      setMonthKcal(getAverageKcal(getLastDays(userData.dailyData, 30)));
-      setAverageKcal(getAverageKcal(userData.dailyData));
+      setTodaySteps(getAverageSteps(getLastDays(userData.dailyData, 1)));
+      setWeekSteps(getAverageSteps(getLastDays(userData.dailyData, 7)));
+      setMonthSteps(getAverageSteps(getLastDays(userData.dailyData, 30)));
+      setAverageSteps(getAverageSteps(userData.dailyData));
     }
   }, [userData]);
 
-  const getAverageKcal = (activity) => {
-      return getAverage(activity.map(day => {
-          return day.calories
-      }))
+  const getAverageSteps = (activity) => {
+    return getAverage(
+      activity.map((day) => {
+        return day.steps;
+      })
+    );
   };
 
   const data = [
     {
-      label: "yesterday",
-      amount: yesterdayKcal,
+      label: "today",
+      amount: todaySteps,
     },
     {
       label: "last week",
-      amount: weekKcal,
+      amount: weekSteps,
     },
     {
       label: "last month",
-      amount: monthKcal,
+      amount: monthSteps,
     },
     {
       label: "last year",
-      amount: averageKcal,
+      amount: averageSteps,
     },
   ];
 
@@ -90,4 +91,4 @@ function Calories() {
   );
 }
 
-export default Calories;
+export default Steps;

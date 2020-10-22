@@ -66,6 +66,7 @@ function HeartRate() {
     return getAverage(sleep.map((night) => night.data.hr_average));
   };
 
+  console.log(userData)
   return (
     <Container>
       <LogoHeader />

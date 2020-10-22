@@ -1,10 +1,12 @@
 import React  from "react";
 import styled from "styled-components";
+
 import HeartRateCard from './cards/HeartRate'
 import SleepDurationCard from './cards/SleepDuration'
 import Calories from './cards/Calories'
 import DeepSleep from './cards/DeepSleep'
 import TimeToBed from './cards/TimeToBed'
+import Steps from './cards/Steps'
 
 
 const Container = styled.div`
@@ -20,6 +22,7 @@ function Content() {
       <Calories/>
       <SleepDurationCard/>
       <DeepSleep/>
+      <Steps/>
       <TimeToBed/>
     </Container>
   );
