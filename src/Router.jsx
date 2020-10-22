@@ -7,6 +7,7 @@ import NightDuration from "./pages/detail/SleepDuration";
 import Calories from "./pages/detail/Calories";
 import DeepSleep from "./pages/detail/DeepSleep";
 import TimeToBed from "./pages/detail/TimeToBed"
+import Steps from "./pages/detail/Steps"
 
 function Routing() {
   return (
