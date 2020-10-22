@@ -8,6 +8,7 @@ import Calories from "./pages/detail/Calories";
 import DeepSleep from "./pages/detail/DeepSleep";
 import TimeToBed from "./pages/detail/TimeToBed"
 import Steps from "./pages/detail/Steps"
+import Workouts from "./pages/detail/Workouts"
 
 function Routing() {
   return (
@@ -30,6 +31,9 @@ function Routing() {
         </Route>
         <Route path="/steps">
           <Steps />
+        </Route>
+        <Route path="/amount-of-workouts">
+         <Workouts/>
         </Route>
         <Route path="/">
           <Feed />
