@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { getActivities, getSleep } from "../lib/fetchWithings";
+import { getActivities, getSleep, getWorkouts } from "../lib/fetchWithings";
 
 export const WithingsContext = createContext(null);
 
@@ -11,7 +11,8 @@ export const WithingsProvider = ({children, isAuthenticated}) => {
     const fetchData = async () => {
       const activities = await getActivities();
       const sleep = await getSleep();
-      setUserData({ dailyData: activities, sleep });
+      const workouts = await getWorkouts()
+      setUserData({ dailyData: activities, sleep, workouts });
     };
 
     fetchData();

@@ -6,9 +6,6 @@ const access_token = localStorage.getItem("access_token");
 export const getActivities = async () => {
   let activities = [];
 
-  let lastyear = new Date();
-  lastyear.setFullYear(lastyear.getFullYear() - 1);
-
   const getData = async (offset = 0) => {
     const userActivities = await fetch(
       `https://wbsapi.withings.net/v2/measure`,
@@ -62,7 +59,6 @@ export const getSleep = async () => {
     const temp = await userSleep.json();
     sleep = sleep.concat(temp.body.series);
 
-
     if (temp.body.more) {
       await getData(temp.body.offset);
     }
@@ -71,4 +67,35 @@ export const getSleep = async () => {
   await getData();
 
   return sleep;
+};
+
+export const getWorkouts = async (offset = 0) => {
+  let workouts = [];
+
+  const getData = async (offset = 0) => {
+    const workoutData = await fetch(`https://wbsapi.withings.net/v2/measure`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + access_token,
+      },
+      body: buildUrl({
+        action: "getworkouts",
+        startdateymd: getLastYear(),
+        enddateymd: getCustomWithingsDate(new Date()),
+        offset,
+        data_fields:
+          "calories,effduration,intensity,manual_calories,hr_average,hr_min,hr_max,hr_zone_0,hr_zone_1,hr_zone_2,hr_zone_3,pause_duration,algo_pause_duration,spo2_average,steps,distance,elevation,,pool_laps,strokes,pool_length",
+      }),
+    });
+
+    const temp = await workoutData.json();
+    workouts = workouts.concat(temp.body.series)
+
+    if (temp.body.more) {
+      await getData(temp.body.offset);
+    }
+  };
+
+  await getData()
 };
