@@ -28,6 +28,9 @@ function Routing() {
         <Route path="/time-to-bed">
           <TimeToBed />
         </Route>
+        <Route path="/steps">
+          <Steps />
+        </Route>
         <Route path="/">
           <Feed />
         </Route>

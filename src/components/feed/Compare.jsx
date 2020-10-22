@@ -19,6 +19,7 @@ function Compare({ data, unit }) {
   }, [data, setCompareData])
 
   const titles = ["Short term", "Medium term", "Long term"]
+  const subLables = data.map(block => block.label)
 
   return (
     <Container>
@@ -30,9 +31,9 @@ function Compare({ data, unit }) {
               key={i}
               title={titles[i]}
               val1={arr[i].amount}
-              label1="last night"
+              label1={subLables[i]}
               val2={arr[i+1].amount}
-              label2="last week"
+              label2={subLables[i+1]}
               unit={unit}
             />
           );
