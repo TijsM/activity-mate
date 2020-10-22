@@ -7,6 +7,7 @@ import Calories from './cards/Calories'
 import DeepSleep from './cards/DeepSleep'
 import TimeToBed from './cards/TimeToBed'
 import Steps from './cards/Steps'
+import Workouts from './cards/Workouts'
 
 
 const Container = styled.div`
@@ -21,6 +22,7 @@ function Content() {
       <HeartRateCard/>
       <Calories/>
       <SleepDurationCard/>
+      <Workouts/>
       <DeepSleep/>
       <Steps/>
       <TimeToBed/>

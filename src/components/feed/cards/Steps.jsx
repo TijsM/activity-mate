@@ -17,7 +17,6 @@ function Steps() {
     }
   }, [userData]);
 
-  console.log(todaySteps);
   return (
     <FeedCard
       activity="Activity"

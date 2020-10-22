@@ -98,4 +98,13 @@ export const getWorkouts = async (offset = 0) => {
   };
 
   await getData()
+
+  return workouts;
+
 };
+
+
+
+
+
+
