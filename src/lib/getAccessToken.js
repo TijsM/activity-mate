@@ -1,8 +1,20 @@
 const getAccessToken = async (code) => {
   clearUrl();
 
+
+  const refreshToken = localStorage.getItem('refresh_token')
+  let grant_type = "authorization_code"
+  let accessString = `code=${code}`
+
+  if(refreshToken){
+    grant_type = "refresh_token"
+    accessString = `refresh_token=${refreshToken}`
+  }
+
+  const body  = `action=requesttoken&grant_type=${grant_type}&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CONSUMER_SECRET}&${accessString}&redirect_uri=${window.location.href}`
+
   const res = await fetch("https://wbsapi.withings.net/v2/oauth2", {
-    body: `action=requesttoken&grant_type=authorization_code&client_id=${process.env.REACT_APP_CLIENT_ID}&client_secret=${process.env.REACT_APP_CONSUMER_SECRET}&code=${code}&redirect_uri=${window.location.href}`,
+    body: body,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
 

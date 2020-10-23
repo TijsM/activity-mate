@@ -7,6 +7,10 @@ const useAuth = () => {
   const [isExpired, setIsExpired] = useState();
 
   useEffect(() => {
+    if (isExpired) {
+      getAccessToken();
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const state = urlParams.get("state");
     const code = urlParams.get("code");
@@ -19,7 +23,7 @@ const useAuth = () => {
     const expires = parseInt(localStorage.getItem("token_expiration"), 10);
 
     setIsExpired(expires < new Date().getTime());
-  }, []);
+  }, [isExpired]);
 
   useEffect(() => {
     setIsAuthenticated(userToken && !isExpired);
