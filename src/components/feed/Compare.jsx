@@ -1,17 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 
 import { H1 } from "../../styles/Details";
 import CompareBlock from "./CompareBlock";
 import { useState } from "react";
-import { useEffect } from "react";
 
 const Container = styled.section`
   margin: ${(props) => props.theme.spacing.bigMargin} 0px;
 `;
 
 function Compare({ data, unit }) {
-
   const [compareData, setCompareData] = useState(data)
 
   useEffect(() => {

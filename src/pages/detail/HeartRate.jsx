@@ -7,6 +7,7 @@ import getLastDays from "../../lib/getLastDays";
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
 import Compare from "../../components/feed/Compare";
+import Learn from "../../components/feed/Learn";
 
 import {
   Strong,
@@ -62,11 +63,18 @@ function HeartRate() {
     },
   ];
 
+  const articles = [
+    {
+      title: "Sleeping Heart Rate: Decoding The Clues To Long-Term Wellbeing",
+      author: "Michelle Polizzi",
+      url: "https://biostrap.com/blog/sleeping-heart-rate/"
+    }
+  ]
+
   const getAverageSleepHr = (sleep) => {
     return getAverage(sleep.map((night) => night.data.hr_average));
   };
 
-  console.log(userData)
   return (
     <Container>
       <LogoHeader />
@@ -83,6 +91,7 @@ function HeartRate() {
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />
+        <Learn data={articles}/>
       </Content>
     </Container>
   );
