@@ -67,9 +67,11 @@ function HeartRate() {
     {
       title: "Sleeping Heart Rate: Decoding The Clues To Long-Term Wellbeing",
       author: "Michelle Polizzi",
-      url: "https://biostrap.com/blog/sleeping-heart-rate/"
-    }
-  ]
+      url: "https://biostrap.com/blog/sleeping-heart-rate/",
+      summary:
+        "In certain cases, a lower resting heart rate can mean a higher degree of physical fitness, which is associated with reduced rates of cardiac events like heart attacks.",
+    },
+  ];
 
   const getAverageSleepHr = (sleep) => {
     return getAverage(sleep.map((night) => night.data.hr_average));
@@ -91,7 +93,7 @@ function HeartRate() {
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />
-        <Learn data={articles}/>
+        <Learn articles={articles} />
       </Content>
     </Container>
   );

@@ -1,27 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-
+import LearnCard from "./LearnCard";
 import { H1 } from "../../styles/Details";
-import { useState } from "react";
 
 const Container = styled.section`
   margin: ${(props) => props.theme.spacing.bigMargin} 0px;
 `;
 
-function Learn({ data }) {
-  const [learnData, setLearnData] = useState(data);
-
-  useEffect(() => {
-    setLearnData(data);
-  }, [data, learnData]);
+function Learn({ articles }) {
+  console.log("articles", articles);
   return (
     <Container>
       <H1>Learn</H1>
-      <LearnCard>
-          
-      </LearnCard>
+      {articles.map((article, i) => (
+        <LearnCard key={i} article={article} />
+      ))}
     </Container>
   );
 }
 
-export default Learn
+export default Learn;
