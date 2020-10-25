@@ -25,9 +25,10 @@ const Title = styled(CardTitle)`
 `;
 
 const Details = styled.div`
+  transition-delay: 0.2s;
   transition-duration: 0.5s;
   opacity: ${(props) => (props.show ? 1 : 0)};
-  max-height: ${(props) => (props.show ? "auto" : "0px")};
+  max-height: ${(props) => (props.show ? "1000px" : "0px")};
 `;
 
 const Summary = styled.p`
