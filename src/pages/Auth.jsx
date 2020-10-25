@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import LogoHeader from "../components/LogoHeader";
 import { H1 } from "../components/Types";
+import getAuthCode from "../lib/getAuthCode";
 
 const Container = styled.section`
   display: flex;
@@ -42,8 +43,6 @@ const LinkContainer = styled.div`
 `;
 
 function Auth() {
-  const url = `http://account.withings.com/oauth2_user/authorize2?response_type=code&client_id=${process.env.REACT_APP_CLIENT_ID}&state=authenticated&scope=user.activity&redirect_uri=${window.location.href}`;
-
   return (
     <Container>
       <LogoHeader />
@@ -59,7 +58,7 @@ function Auth() {
         </ContentBlock>
         <LinkContainer
           onClick={() => {
-            window.location.href = url;
+            getAuthCode();
           }}
         >
           Let's go
