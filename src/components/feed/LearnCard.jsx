@@ -21,6 +21,7 @@ const CardHeader = styled.div`
 
 const Title = styled(CardTitle)`
   font-size: 28px;
+  margin-bottom: 0px;
 `;
 
 const Details = styled.div`
@@ -44,6 +45,8 @@ const Link = styled.a`
 
 const Chevron = styled.img`
   cursor: pointer;
+  transition: transform 0.5s;
+  transform: ${(props) => (props.show ? "rotate(180deg)" : "rotate(0deg)")};
 `;
 
 function LearnCard({ article }) {
@@ -64,6 +67,7 @@ function LearnCard({ article }) {
           <Title>{article.title}</Title>
         </div>
         <Chevron
+          show={showDetails}
           src={ChevronImage}
           onClick={() => setShowDetails(!showDetails)}
         />
