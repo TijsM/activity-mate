@@ -27,8 +27,9 @@ const Title = styled(CardTitle)`
 const Details = styled.div`
   transition-delay: 0.2s;
   transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(.75,0,.25,1.01);
   opacity: ${(props) => (props.show ? 1 : 0)};
-  max-height: ${(props) => (props.show ? "1000px" : "0px")};
+  max-height: ${(props) => (props.show ? "200px" : "0px")};
 `;
 
 const Summary = styled.p`
@@ -47,7 +48,7 @@ const Link = styled.a`
 const Chevron = styled.img`
   cursor: pointer;
   transition: transform 0.5s;
-  transform: ${(props) => (props.show ? "rotate(180deg)" : "rotate(0deg)")};
+  transform: ${(props) => (props.show ? "rotate(0deg)" : "rotate(180deg)")};
 `;
 
 function LearnCard({ article }) {
