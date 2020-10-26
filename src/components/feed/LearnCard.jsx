@@ -20,7 +20,8 @@ const CardHeader = styled.div`
 `;
 
 const Title = styled(CardTitle)`
-  font-size: 28px;
+  font-size: 24px;
+  line-height: 28px;
   margin-bottom: 0px;
 `;
 
@@ -29,7 +30,7 @@ const Details = styled.div`
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(.75,0,.25,1.01);
   opacity: ${(props) => (props.show ? 1 : 0)};
-  max-height: ${(props) => (props.show ? "200px" : "0px")};
+  max-height: ${(props) => (props.show ? "300px" : "0px")};
 `;
 
 const Summary = styled.p`
@@ -55,11 +56,11 @@ function LearnCard({ article }) {
   const [showDetails, setShowDetails] = useState(false);
 
   const getCleanUrl = (url) => {
-    const splitted = url.split("/");
-    return splitted[2];
+    const splitted =  url.split("/")[2];
+    const withoutWWW = splitted.split("www.")
+    return withoutWWW[1]? withoutWWW[1]: withoutWWW[0]
   };
 
-  console.log(showDetails);
 
   return (
     <Card activity="Learn">

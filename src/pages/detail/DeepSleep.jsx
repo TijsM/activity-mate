@@ -7,6 +7,7 @@ import getAverageRelativeDeepSleep from "../../lib/getAverageRelativeDeepSleep";
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
 import Compare from "../../components/feed/Compare";
+import Learn from "../../components/feed/Learn";
 
 import {
   Strong,
@@ -66,6 +67,18 @@ function DeepSleep() {
       amount: averageDeepSleep,
     },
   ];
+
+  const articles = [
+    {
+      title: "What Is REM Sleep?",
+      author: "Mark Stibich, PhD",
+      url: "https://www.verywellmind.com/understanding-dreams-2224258",
+      summary:
+        "Rapid eye movement (REM) sleep is one of the four stages that the brain goes through during the sleep cycle. This period of the sleep cycle usually takes place about 90 minutes after a person first falls asleep. It is marked by a number of physiological changes that include muscle relaxation, eye movement, faster respiration, and increased brain activity.",
+    },
+  ];
+
+
   return (
     <Container>
       <LogoHeader />
@@ -77,11 +90,12 @@ function DeepSleep() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-          TODOOOOOOO
-          <Strong> TODOOOOOOOO</Strong>
+          The quality of a night can be measured by it's deep sleep or REM sleep,
+          <Strong> the more deep sleep, the better</Strong>.
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />
+        <Learn articles={articles}/>
       </Content>
     </Container>
   );

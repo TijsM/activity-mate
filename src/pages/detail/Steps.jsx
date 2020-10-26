@@ -7,6 +7,8 @@ import getLastDays from "../../lib/getLastDays";
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
 import Compare from "../../components/feed/Compare";
+import Learn from "../../components/feed/Learn";
+
 
 import {
   Strong,
@@ -70,6 +72,17 @@ function Steps() {
     },
   ];
 
+  const articles = [
+    {
+      title: "15 Health benefits of walking 10,000 steps a day",
+      author: "Endurancely",
+      url:
+        "https://www.endurancely.com/benefits-of-walking/#11_Steps_to_a_Daily_Walking_Habit",
+      summary:
+        "Walking is something most people can do, regardless of their individual level of fitness. Regardless of whether someone has an active and physical lifestyle or whether the normal physical activity is a short trip from the couch to the refrigerator, increasing the amount of daily walking has significant benefits for both short and long term.",
+    },
+  ];
+
   return (
     <Container>
       <LogoHeader />
@@ -81,11 +94,12 @@ function Steps() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-          TODOOOOOOO
-          <Strong> TODOOOOOOOO</Strong>
+          Consistently having a lot steps has many health benefits,
+          <Strong> try to have as much steps as possible</Strong>.
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />
+        <Learn articles={articles} />
       </Content>
     </Container>
   );

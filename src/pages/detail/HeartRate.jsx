@@ -89,7 +89,7 @@ function HeartRate() {
         </Header>
         <Context>
           Having a low heart rate during the night means that you are resting.
-          <Strong> The lower your heart rate, the better</Strong>
+          <Strong> The lower your heart rate, the better</Strong>.
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />

@@ -7,6 +7,7 @@ import getAverageTimeToBed from "../../lib/getAverageTimeToBed";
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
 import Compare from "../../components/feed/Compare";
+import Learn from '../../components/feed/Learn'
 
 import {
   Strong,
@@ -62,6 +63,17 @@ function TimeToBed() {
     },
   ];
 
+  const articles = [
+    {
+      title: "Why being a night owl may lead to earlier death",
+      author: " Brian Resnick",
+      url:
+        "https://www.vox.com/science-and-health/2018/4/16/17233860/night-owl-chronobiology-sleeping-late-health-risk",
+      summary:
+        "Imagine being jet-lagged every day. That’s what late sleepers feel. And it may be harming their health.",
+    },
+  ];
+
   return (
     <Container>
       <LogoHeader />
@@ -73,11 +85,12 @@ function TimeToBed() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-          TODOOOOOOO
-          <Strong> TODOOOOOOOO</Strong>
+          Going to bed late can have negative health effects,
+          <Strong> try to go to bed on time</Strong>.
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />
+        <Learn articles={articles}/>
       </Content>
     </Container>
   );

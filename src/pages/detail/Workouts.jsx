@@ -6,6 +6,7 @@ import getLastDays from "../../lib/getLastDays";
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
 import Compare from "../../components/feed/Compare";
+import Learn from "../../components/feed/Learn";
 
 import {
   Strong,
@@ -41,7 +42,7 @@ function Workouts() {
 
   const getAmountOfWorkouts = (workouts, amount) => {
     const selectedWorkouts = getLastDays(workouts, amount);
-    console.log(selectedWorkouts.length)
+    console.log(selectedWorkouts.length);
     return (selectedWorkouts.length / amount) * 7;
   };
 
@@ -60,6 +61,17 @@ function Workouts() {
     },
   ];
 
+  const articles = [
+    {
+      title: "The role of physical activity and sport in mental health",
+      author: "Dr Nick Peirce | Dr Catherine Lester",
+      url:
+        "https://www.fsem.ac.uk/position_statement/the-role-of-physical-activity-and-sport-in-mental-health/#:~:text=Physical%20activity%20has%20been%20shown,and%20reduce%20stress%20and%20anxiety.",
+      summary:
+        "Physical activity has been shown to have a strong and positive influence on mental wellbeing and some mental illnesses. Participation in regular physical activity can increase self-esteem and reduce stress and anxiety.",
+    },
+  ];
+
   return (
     <Container>
       <LogoHeader />
@@ -71,11 +83,13 @@ function Workouts() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-          TODOOOOOOO
-          <Strong> TODOOOOOOOO</Strong>
+          Physical activity and sport in general can improve your
+          <Strong> mental health</Strong>. The more sportsessions you can have
+          in a week, the better.
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />
+        <Learn articles={articles} />
       </Content>
     </Container>
   );

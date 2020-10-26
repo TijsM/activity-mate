@@ -8,6 +8,7 @@ import getAverageNightDuration from "../../lib/getAverageNightDuration";
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
 import Compare from "../../components/feed/Compare";
+import Learn from "../../components/feed/Learn";
 
 import {
   Strong,
@@ -65,6 +66,17 @@ function SleepDuration() {
     },
   ];
 
+  const articles = [
+    {
+      title: "How Much Sleep Do We Really Need?",
+      author: "Eric Suni | Dr. Abhinav Singh",
+      url:
+        "https://www.sleepfoundation.org/articles/how-much-sleep-do-we-really-need",
+      summary:
+        "Scientific research makes clear that sleep is essential at any age. Sleep powers the mind, restores the body, and fortifies virtually every system in the body. But how much sleep do we really need in order to get these benefits? National Sleep Foundation guidelines1 advise that healthy adults need between 7 and 9 hours of sleep per night. Babies, young children, and teens need even more sleep to enable their growth and development. People over 65 should also get 7 to 8 hours per night.",
+    },
+  ];
+
   return (
     <Container>
       <LogoHeader />
@@ -76,11 +88,12 @@ function SleepDuration() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-          TODOOOOOOO
-          <Strong> TODOOOOOOOO</Strong>
+          According to scientific research an adult persion needs between
+          <Strong> 7 and 9 hours of sleep a night</Strong>.
         </Context>
         <BarChart chartData={data} unit={"minutes"} />
         <Compare data={data} unit={"minutes"} />
+        <Learn articles={articles}/>
       </Content>
     </Container>
   );

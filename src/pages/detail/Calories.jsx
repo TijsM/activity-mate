@@ -8,6 +8,7 @@ import { getYesterday } from "../../lib/getWithingsDate";
 import LogoHeader from "../../components/LogoHeader";
 import BarChart from "../../components/feed/BarChart";
 import Compare from "../../components/feed/Compare";
+import Learn from "../../components/feed/Learn";
 
 import {
   Strong,
@@ -69,6 +70,16 @@ function Calories() {
     },
   ];
 
+  const articles = [
+    {
+      title: "5 Things to Know about Burning More Calories",
+      author: "Riikka Lamminen",
+      url: "https://www.firstbeat.com/en/blog/5-things-to-know-about-burning-more-calories/",
+      summary:
+        "Eager to lose weight? Often it is said that it is easier to cut back on calories than to increase energy expenditure with exercise. There’s some truth to this.",
+    },
+  ];
+
   return (
     <Container>
       <LogoHeader />
@@ -80,11 +91,12 @@ function Calories() {
           <H1>{props.title}</H1>
         </Header>
         <Context>
-          TODOOOOOOO
-          <Strong> TODOOOOOOOO</Strong>
+          If you want to loose weight, you have to
+          <Strong> burn as much calories as possible</Strong> in a day.
         </Context>
         <BarChart chartData={data} unit={UNIT} />
         <Compare data={data} unit={UNIT} />
+        <Learn articles={articles}/>
       </Content>
     </Container>
   );
