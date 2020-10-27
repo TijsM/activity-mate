@@ -51,7 +51,7 @@ function CompareBlock({ title, val1, label1, val2, label2, unit }) {
     }
 
     const dif = Math.round(((val2 - val1) / val1) * 100);
-    return dif > 0 ? `(+${dif}%)` : `(${dif}%)`;
+    return dif > 0 ? `(-${dif}%)` : `(+${dif}%)`;
   };
 
   const formatValue = (value) => {
