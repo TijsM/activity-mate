@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+import useSplashScreen from "../hooks/useSplashScreen";
+
 import LogoHeader from "../components/LogoHeader";
 import Content from "../components/feed/Content";
+import SplashScreen from "../components/SplashScreen";
 
 const Container = styled.section`
   display: flex;
@@ -10,11 +13,15 @@ const Container = styled.section`
 `;
 
 function Feed() {
-  return (
+  const dataIsLoaded = useSplashScreen();
+
+  return dataIsLoaded ? (
     <Container>
       <LogoHeader />
       <Content />
     </Container>
+  ) : (
+    <SplashScreen />
   );
 }
 
