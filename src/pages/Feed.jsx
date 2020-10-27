@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { WithingsContext } from "../contexts/WithingsContext";
+
+import useSplashScreen from "../hooks/useSplashScreen";
 
 import LogoHeader from "../components/LogoHeader";
 import Content from "../components/feed/Content";
@@ -12,15 +13,7 @@ const Container = styled.section`
 `;
 
 function Feed() {
-  const { userData } = useContext(WithingsContext);
-
-  const [dataIsLoaded, setDataIsLoaded] = useState(false);
-
-  useEffect(() => {
-    if (Object.keys(userData).length > 1) {
-      setDataIsLoaded(true);
-    }
-  }, [userData]);
+  const dataIsLoaded = useSplashScreen();
 
   return dataIsLoaded ? (
     <Container>

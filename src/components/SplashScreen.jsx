@@ -4,4 +4,4 @@ function SplashScreen() {
   return <div>splashing</div>;
 }
 
-export default SplashScreen
+export default SplashScreen;
