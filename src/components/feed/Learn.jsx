@@ -8,7 +8,6 @@ const Container = styled.section`
 `;
 
 function Learn({ articles }) {
-  console.log("articles", articles);
   return (
     <Container>
       <H1>Learn</H1>

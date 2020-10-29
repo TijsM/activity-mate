@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import styled from "styled-components";
 import { WithingsContext } from "../../../contexts/WithingsContext";
 
 import getAverage from "../../../lib/getAverage";
@@ -53,11 +54,11 @@ function HighlightCard() {
       setChartData([
         {
           label: "with sport",
-          amount: Math.round(getAverage(getSleepScores(nightsWithSport))),
+          amount: Math.round(getAverage(getSleepHr(nightsWithSport))),
         },
         {
           label: "without sport",
-          amount: Math.round(getAverage(getSleepScores(nights))),
+          amount: Math.round(getAverage(getSleepHr(nights))),
         },
       ]);
     }
@@ -73,8 +74,8 @@ function HighlightCard() {
       .filter(Boolean);
   };
 
-  const getSleepScores = (nights) => {
-    return nights.map((night) => night.data.sleep_score);
+  const getSleepHr = (nights) => {
+    return nights.map((night) => night.data.hr_average);
   };
 
   return (
@@ -82,15 +83,15 @@ function HighlightCard() {
       <CardTitle>Impact of sporting on your sleep</CardTitle>
       {nightsWithSport && (
         <Context>
-          Your average Withings sleep score on a day where you had a
-          sportsession was{" "}
+          Your average heart rate on a night where you had a
+          sportsession was
           <CardHighlight>
-            {Math.round(getAverage(getSleepScores(nightsWithSport)))}
+            {Math.round(getAverage(getSleepHr(nightsWithSport)))} bpm
           </CardHighlight>
-          . Your average Withings sleep score when you didn't have a sport
+          . Your average Wheart rate when you didn't have a sport
           sessio was{" "}
           <CardHighlight>
-            {Math.round(getAverage(getSleepScores(nights)))}
+            {Math.round(getAverage(getSleepHr(nights)))} bpm
           </CardHighlight>
           .
         </Context>
