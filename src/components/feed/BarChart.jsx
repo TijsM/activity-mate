@@ -4,9 +4,11 @@ import { useState } from "react";
 import formatTimeFromMinutes from "../../lib/formatTimeFromMinutes";
 
 const Container = styled.article`
-  box-shadow: ${(props) => props.theme.shadow.card};
+  box-shadow: ${(props) => !props.hideShadow && props.theme.shadow.card};
   border-radius: ${(props) => props.theme.radius.card};
-  padding: ${(props) => props.theme.spacing.padding};
+  padding: ${(props) => !props.hideShadow && props.theme.spacing.padding};
+  padding-top: ${(props) => props.hideShadow && props.theme.spacing.padding};
+  padding-bottom: ${(props) => props.hideShadow && props.theme.spacing.padding};
 `;
 
 const Row = styled.div`
@@ -33,7 +35,7 @@ const P = styled.p`
   margin: 0px;
 `;
 
-function BarChart({ chartData, unit, relativeDevideValue }) {
+function BarChart({ chartData, unit, hideShadow }) {
   const [data, setData] = useState(chartData);
 
   useEffect(() => {
@@ -68,7 +70,7 @@ function BarChart({ chartData, unit, relativeDevideValue }) {
   };
 
   return (
-    <Container>
+    <Container hideShadow={hideShadow}>
       {data &&
         data[1].amount !== 0 &&
         data.map((row, i) => {
