@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import styled from "styled-components";
 import { WithingsContext } from "../../../contexts/WithingsContext";
 
 import getAverage from "../../../lib/getAverage";
@@ -83,13 +82,11 @@ function HighlightCard() {
       <CardTitle>Impact of sporting on your sleep</CardTitle>
       {nightsWithSport && (
         <Context>
-          Your average heart rate on a night where you had a
-          sportsession was
+          Your average heart rate on a night where you had a sportsession was{" "}
           <CardHighlight>
             {Math.round(getAverage(getSleepHr(nightsWithSport)))} bpm
           </CardHighlight>
-          . Your average Wheart rate when you didn't have a sport
-          sessio was{" "}
+          . Your average Wheart rate when you didn't have a sport sessio was{" "}
           <CardHighlight>
             {Math.round(getAverage(getSleepHr(nights)))} bpm
           </CardHighlight>
