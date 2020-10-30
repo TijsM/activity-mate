@@ -13,6 +13,8 @@ function HighlightCard() {
   const { userData } = useContext(WithingsContext);
 
   const [nightsWithSport, setNightsWithSport] = useState();
+  const [nightsWithoutSport, setNightsWithoutSleep] = useState()
+
   const [nights, setNights] = useState();
   const [chartData, setChartData] = useState([
     {
@@ -39,12 +41,20 @@ function HighlightCard() {
   }, [userData]);
 
   useEffect(() => {
-    if (nights && userData.workouts) {
+    if (nights && userData.workouts && userData.sleep) {
+      const allDates = userData.sleep.map((n) => n.date);
+
       const nightsWithSport = userData.workouts.map((workout) => {
         return workout.date;
       });
 
+      const nightsWithoutSport = allDates.filter(
+        (date) => !nightsWithSport.includes(date)
+      );
+
       setNightsWithSport(getNightsByDates(nightsWithSport, nights));
+      setNightsWithoutSleep(getNightsByDates(nightsWithoutSport, nights))
+
     }
   }, [userData, nights]);
 
@@ -57,11 +67,11 @@ function HighlightCard() {
         },
         {
           label: "without sport",
-          amount: Math.round(getAverage(getSleepScores(nights))),
+          amount: Math.round(getAverage(getSleepScores(nightsWithoutSport))),
         },
       ]);
     }
-  }, [nights, nightsWithSport]);
+  }, [nights, nightsWithSport, nightsWithoutSport]);
 
   const getNightsByDates = (dates, nights) => {
     return dates
@@ -90,7 +100,7 @@ function HighlightCard() {
           . Your average Withings sleep score when you didn't have a sport
           sessio was{" "}
           <CardHighlight>
-            {Math.round(getAverage(getSleepScores(nights)))}
+            {Math.round(getAverage(getSleepScores(nightsWithoutSport)))}
           </CardHighlight>
           .
         </Context>

@@ -27,7 +27,6 @@ export const getYesterday = () => {
 };
 
 export const getDayBeforeDate = (withingsDate) => {
-  console.log(withingsDate)
   const date = getJsDate(withingsDate)
   date.setDate(date.getDate() - 1);
 

@@ -13,6 +13,7 @@ function HighlightCard() {
   const { userData } = useContext(WithingsContext);
 
   const [nightsWithSport, setNightsWithSport] = useState();
+  const [nightsWithoutSport, setNightsWithoutSleep] = useState()
   const [nights, setNights] = useState();
   const [chartData, setChartData] = useState([
     {
@@ -27,7 +28,6 @@ function HighlightCard() {
 
   useEffect(() => {
     if (userData.sleep) {
-      console.log(userData.sleep)
       setNights(
         userData.sleep.map((night) => {
           return {
@@ -40,12 +40,20 @@ function HighlightCard() {
   }, [userData]);
 
   useEffect(() => {
-    if (nights && userData.workouts) {
+    if (nights && userData.workouts && userData.sleep) {
+      const allDates = userData.sleep.map((n) => n.date);
+
       const nightsWithSport = userData.workouts.map((workout) => {
         return workout.date;
       });
 
+      const nightsWithoutSport = allDates.filter(
+        (date) => !nightsWithSport.includes(date)
+      );
+
       setNightsWithSport(getNightsByDates(nightsWithSport, nights));
+      setNightsWithoutSleep(getNightsByDates(nightsWithoutSport, nights))
+
     }
   }, [userData, nights]);
 
@@ -58,15 +66,13 @@ function HighlightCard() {
         },
         {
           label: "without sport",
-          amount: Math.round(getAverage(getSleepHr(nights))),
+          amount: Math.round(getAverage(getSleepHr(nightsWithoutSport))),
         },
       ]);
     }
-  }, [nights, nightsWithSport]);
+  }, [nightsWithoutSport, nightsWithSport, nights]);
 
   const getNightsByDates = (dates, nights) => {
-    console.log('dates', dates)
-    console.log('nights', nights)
     return dates
       .map((sportNight) => {
         return nights.find((nightObject) => {
@@ -80,7 +86,6 @@ function HighlightCard() {
     return nights.map((night) => night.data.hr_average);
   };
 
-
   return (
     <Container>
       <CardTitle>Impact of sporting on your sleep</CardTitle>
@@ -92,7 +97,7 @@ function HighlightCard() {
           </CardHighlight>
           . Your average Wheart rate when you didn't have a sport sessio was{" "}
           <CardHighlight>
-            {Math.round(getAverage(getSleepHr(nights)))} bpm
+            {Math.round(getAverage(getSleepHr(nightsWithoutSport)))} bpm
           </CardHighlight>
           .
         </Context>
