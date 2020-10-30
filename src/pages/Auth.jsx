@@ -58,6 +58,9 @@ function Auth() {
         </ContentBlock>
         <LinkContainer
           onClick={() => {
+            localStorage.removeItem('access_token')
+            localStorage.removeItem('refresh_token')
+            localStorage.removeItem('token_expiration')
             getAuthCode();
           }}
         >
