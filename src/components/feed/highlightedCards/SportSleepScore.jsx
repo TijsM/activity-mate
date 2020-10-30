@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { WithingsContext } from "../../../contexts/WithingsContext";
 
 import getAverage from "../../../lib/getAverage";
-import { getYesterday } from "../../../lib/getWithingsDate";
+import { getDayBeforeDate } from "../../../lib/getWithingsDate";
 
 import BarChart from "../BarChart";
 
@@ -31,7 +31,7 @@ function HighlightCard() {
         userData.sleep.map((night) => {
           return {
             ...night,
-            date: getYesterday(night.date),
+            date: getDayBeforeDate(night),
           };
         })
       );

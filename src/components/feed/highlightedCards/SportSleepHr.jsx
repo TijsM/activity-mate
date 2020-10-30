@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { WithingsContext } from "../../../contexts/WithingsContext";
 
 import getAverage from "../../../lib/getAverage";
-import { getYesterday } from "../../../lib/getWithingsDate";
+import { getDayBeforeDate } from "../../../lib/getWithingsDate";
 
 import BarChart from "../BarChart";
 
@@ -27,11 +27,12 @@ function HighlightCard() {
 
   useEffect(() => {
     if (userData.sleep) {
+      console.log(userData.sleep)
       setNights(
         userData.sleep.map((night) => {
           return {
             ...night,
-            date: getYesterday(night.date),
+            date: getDayBeforeDate(night),
           };
         })
       );
@@ -64,6 +65,8 @@ function HighlightCard() {
   }, [nights, nightsWithSport]);
 
   const getNightsByDates = (dates, nights) => {
+    console.log('dates', dates)
+    console.log('nights', nights)
     return dates
       .map((sportNight) => {
         return nights.find((nightObject) => {
@@ -76,6 +79,7 @@ function HighlightCard() {
   const getSleepHr = (nights) => {
     return nights.map((night) => night.data.hr_average);
   };
+
 
   return (
     <Container>
@@ -93,7 +97,7 @@ function HighlightCard() {
           .
         </Context>
       )}
-      <BarChart chartData={chartData} unit={" "} hideShadow={true} />
+      <BarChart chartData={chartData} unit={"bpm"} hideShadow={true} />
     </Container>
   );
 }

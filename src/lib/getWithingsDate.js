@@ -26,6 +26,14 @@ export const getYesterday = () => {
   return getCustomWithingsDate(yesterday);
 };
 
+export const getDayBeforeDate = (withingsDate) => {
+  console.log(withingsDate)
+  const date = getJsDate(withingsDate)
+  date.setDate(date.getDate() - 1);
+
+  return getCustomWithingsDate(date);
+}
+
 
 export const getJsDate = (withingsDate) => {
   const date = new Date(
