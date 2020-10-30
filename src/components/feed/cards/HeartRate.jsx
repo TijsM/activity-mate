@@ -4,6 +4,8 @@ import getLastDays from '../../../lib/getLastDays'
 
 import FeedCard from "../Card";
 
+import getAverage from '../../../lib/getAverage'
+
 function HeartRate() {
   const { userData } = useContext(WithingsContext);
 
@@ -12,12 +14,13 @@ function HeartRate() {
 
   useEffect(() => {
     if (userData.sleep) {
-      setAverageSleepHr(getAverageSleepHr(userData.sleep));
+      setAverageSleepHr(getAverageSleepHr(getLastDays(userData.sleep, 1)));
     }
   }, [userData]);
 
+
   const getAverageSleepHr = (sleep) => {
-    return getLastDays(sleep, 1)[0].data.hr_average
+    return getAverage(sleep.map((night) => night.data.hr_average));
   };
 
   return (
