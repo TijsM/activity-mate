@@ -3,7 +3,7 @@
   "name": "Activity mate - track your sleep and activities",
   "lang": "en",
   "description": "By using the data from a Withings device you can track your goals over a longer period of time",
-  "background_color": "#000000",
+  "background_color": "#FFFFFF",
   "theme_color": "#38F257",
   "start_url": "/",
   "dir": "ltr",
