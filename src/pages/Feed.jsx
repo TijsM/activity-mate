@@ -10,6 +10,8 @@ import SplashScreen from "../components/SplashScreen";
 const Container = styled.section`
   display: flex;
   flex-direction: column;
+  margin: auto;
+  max-width: 500px;
 `;
 
 function Feed() {

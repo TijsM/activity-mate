@@ -20,6 +20,7 @@ export const Context = styled(DefaultContext)`
   font-size: 14px;
   line-height: 16px;
   margin-bottom: -10px;
+  margin-top: -10px;
 `;
 
 export const ChartContainer = styled.div`

@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
+  max-width: 500px;
+  margin: auto;
 `;
 
 export const Content = styled.div`
