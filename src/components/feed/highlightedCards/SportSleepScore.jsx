@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { WithingsContext } from "../../../contexts/WithingsContext";
 
 import getAverage from "../../../lib/getAverage";
-import { getDayBeforeDate } from "../../../lib/getWithingsDate";
+import { getDayAfterDate } from "../../../lib/getWithingsDate";
 
 import BarChart from "../BarChart";
 
@@ -13,7 +13,7 @@ function HighlightCard() {
   const { userData } = useContext(WithingsContext);
 
   const [nightsWithSport, setNightsWithSport] = useState();
-  const [nightsWithoutSport, setNightsWithoutSleep] = useState()
+  const [nightsWithoutSport, setNightsWithoutSleep] = useState();
 
   const [nights, setNights] = useState();
   const [chartData, setChartData] = useState([
@@ -33,7 +33,7 @@ function HighlightCard() {
         userData.sleep.map((night) => {
           return {
             ...night,
-            date: getDayBeforeDate(night),
+            date: getDayAfterDate(night), // gets the next night --> the nights after a sport session
           };
         })
       );
@@ -53,8 +53,7 @@ function HighlightCard() {
       );
 
       setNightsWithSport(getNightsByDates(nightsWithSport, nights));
-      setNightsWithoutSleep(getNightsByDates(nightsWithoutSport, nights))
-
+      setNightsWithoutSleep(getNightsByDates(nightsWithoutSport, nights));
     }
   }, [userData, nights]);
 

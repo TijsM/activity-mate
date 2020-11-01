@@ -50,8 +50,8 @@ function CompareBlock({ title, val1, label1, val2, label2, unit }) {
       return "";
     }
 
-    const dif = Math.round(((val2 - val1) / val1) * 100);
-    return dif > 0 ? `(-${dif}%)` : `(+${dif}%)`;
+    const dif = Math.round(((val1 - val2) / val2) * 100);
+    return dif > 0 ? `(-${dif}%)` : `(${dif}%)`;
   };
 
   const formatValue = (value) => {

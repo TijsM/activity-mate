@@ -15,12 +15,13 @@ const theme = {
     margin: "16px",
     bigMargin: "48px",
     padding: "22px",
+    smallPadding: "10px"
   },
   radius: {
     card: "18px",
   },
   shadow: {
-    card: "0px 4px 16px rgba(200, 200, 200, 0.25)",
+    card: "0px 4px 16px rgba(200, 200, 200, 0.3)",
   },
 };
 

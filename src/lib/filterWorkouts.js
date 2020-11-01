@@ -1,5 +1,4 @@
 export default (workouts) => {
-  //filter out walks shorter then 1k
   workouts = workouts.filter((workout) => {
     if (workout.category === 1 || workout.category === 6) {
       if (workout.data.calories < 200) {
@@ -11,4 +10,12 @@ export default (workouts) => {
   });
 
   return workouts;
+};
+
+export const filterRuns = (workouts) => {
+  workouts = workouts.filter((workout) => {
+    return workout.category === 2;
+  });
+
+  return workouts
 };

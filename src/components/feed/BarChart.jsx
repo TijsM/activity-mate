@@ -50,6 +50,7 @@ function BarChart({ chartData, unit, hideShadow }) {
 
   const getRelativeAmount = (amount) => {
     amount = Math.round(amount);
+
     const max = Math.round(
       Math.max.apply(
         Math,
@@ -66,7 +67,15 @@ function BarChart({ chartData, unit, hideShadow }) {
 
     // making sure the smallest bar is half the length
     const subtractValue = min - (max - min);
-    return ((amount - subtractValue) / (max - subtractValue)) * 100;
+
+    let res;
+    if (amount - subtractValue === max - subtractValue) {
+      res = 100;
+    } else {
+      res = ((amount - subtractValue) / (max - subtractValue)) * 100;
+    }
+
+    return res;
   };
 
   return (
