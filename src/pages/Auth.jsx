@@ -54,7 +54,7 @@ const RodiLink = styled.a`
   color: ${(props) => props.theme.colors.textGrey};
   text-decoration: none;
   font-size: 14px;
-  
+
   &:hover {
     color: ${(props) => props.theme.colors.green};
   }
@@ -76,9 +76,9 @@ function Auth() {
         </ContentBlock>
         <LinkContainer
           onClick={() => {
-            localStorage.removeItem('access_token')
-            localStorage.removeItem('refresh_token')
-            localStorage.removeItem('token_expiration')
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            localStorage.removeItem("token_expiration");
             getAuthCode();
           }}
         >
@@ -86,7 +86,11 @@ function Auth() {
         </LinkContainer>
       </Content>
       <Footer>
-        <RodiLink href="https://rodi.digital" target="_blank" rel="noopener noreferrer">
+        <RodiLink
+          href="https://rodi.digital.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Built by Rodi Digital
         </RodiLink>
       </Footer>
