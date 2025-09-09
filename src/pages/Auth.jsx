@@ -42,6 +42,24 @@ const LinkContainer = styled.div`
   cursor: pointer;
 `;
 
+const Footer = styled.div`
+  position: fixed;
+  bottom: ${(props) => props.theme.spacing.margin};
+  left: ${(props) => props.theme.spacing.margin};
+  right: ${(props) => props.theme.spacing.margin};
+  text-align: center;
+`;
+
+const RodiLink = styled.a`
+  color: ${(props) => props.theme.colors.textGrey};
+  text-decoration: none;
+  font-size: 14px;
+  
+  &:hover {
+    color: ${(props) => props.theme.colors.green};
+  }
+`;
+
 function Auth() {
   return (
     <Container>
@@ -50,11 +68,11 @@ function Auth() {
         <H1>Hi there!</H1>
         <ContentBlock>
           Working on your <Strong>health and fitness</Strong> is only possible
-          if you know how you’re doingcompared to your previous prestations.
+          if you know how you're doingcompared to your previous prestations.
         </ContentBlock>
         <ContentBlock>
           Sign in with your <Strong>Withings</Strong> account and take look on
-          how you’re doing.
+          how you're doing.
         </ContentBlock>
         <LinkContainer
           onClick={() => {
@@ -67,6 +85,11 @@ function Auth() {
           Let's go
         </LinkContainer>
       </Content>
+      <Footer>
+        <RodiLink href="https://rodi.digital" target="_blank" rel="noopener noreferrer">
+          Built by Rodi Digital
+        </RodiLink>
+      </Footer>
     </Container>
   );
 }
